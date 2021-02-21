@@ -71,7 +71,7 @@ export default function SignIn({ history }) {
                     </div>
                     <div>
                         <button
-                            onClick={() => router.push("/choose-asset")}
+                            onClick={(e) => { e.preventDefault(); router.push("/choose-asset") }}
                             className="bg-orange br10 full-width f14 p10 bd-o  fw pointer">
                             Create Account
                        </button>
