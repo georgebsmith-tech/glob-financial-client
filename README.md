@@ -1,1 +1,0 @@
-# glob-financial-client
