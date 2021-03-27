@@ -113,14 +113,16 @@ cursor:pointer;
 }
 
 .bold{
-  font-weight: bold;
+  font-weight: 500;
 }
 
 
 .br10{
   border-radius:10px;
 }
-
+.tb{
+  color:#000;
+}
 .full-width{
   width: 100%;
 }
@@ -204,5 +206,15 @@ cursor:pointer;
 
 .mobile-container{
   padding: 15px;
+}
+
+
+.mr5{
+  margin-right: 5px;
+}
+
+
+.mt50{
+  margin-top: 50px;
 }
 
