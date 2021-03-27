@@ -31,6 +31,23 @@ ul{
   background-color:#8BBD43 ;
 }
 
+.text-brand-orange{
+  color: #F86F1F;
+}
+.bg-brand-orange{
+  background-color: #F86F1F;
+}
+
+.tw{
+  color:#fff;
+}
+
+
+.text-brand-green{
+  color:#8BBD43;
+}
+
+
 
 .pointer{
 cursor:pointer;
@@ -116,6 +133,15 @@ cursor:pointer;
   padding: 10px;
 }
 
+.p15{
+  padding: 15px;
+}
+
+.f30{
+  font-size: 30px;
+}
+
+
 .no-outline{
   outline: none;
 }
@@ -171,3 +197,12 @@ cursor:pointer;
 .mt5{
   margin-top: 5px;
 }
+
+.space-between{
+  justify-content: space-between;
+}
+
+.mobile-container{
+  padding: 15px;
+}
+

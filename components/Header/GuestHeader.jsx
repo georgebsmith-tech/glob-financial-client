@@ -1,13 +1,50 @@
 import React from 'react'
 import Link from 'next/link'
+import { useMediaQuery } from 'react-responsive';
 
 const GuestHeader = ({ children }) => {
+    const isPortrait = useMediaQuery({ query: '(orientation: portrait)' })
+    const isTabletOrMobile = useMediaQuery({ query: '(max-width: 1224px)' })
+    const isTabletOrMobileDevice = useMediaQuery({
+        query: '(max-device-width: 1224px)'
+    })
+
+    if (isTabletOrMobile) {
+        return (
+            <div>
+
+                <nav className="bg-brand-green">
+                    <div className="flex align-center space-between p15">
+
+                        <h2>
+                            <span className="bold f16 fw">GLOB</span><span className="f16 fo">
+                                FINANCIAL
+                </span>
+                        </h2>
+                        <div>
+                            burger
+                    </div>
+                    </div>
+                </nav>
+
+
+            </div>
+
+
+        )
+    }
     return (
         <header>
 
             <nav
                 className="bg-brand-green align-center"
-                style={{ padding: "24px 51px 35px 51px", display: "flex", justifyContent: "space-around" }}
+                style={
+                    {
+                        padding: "24px 51px 35px 51px",
+                        display: "flex",
+                        justifyContent: "space-around"
+                    }
+                }
             >
                 <h2>
                     <span className="bold f24 fw">GLOB</span><span className="f24 fo">
