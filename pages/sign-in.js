@@ -1,14 +1,24 @@
 import Head from 'next/head'
 import styles from '../styles/Home.module.css'
+import links from '../configs/links'
+import Link from 'next/link'
+import { useRouter } from 'next/router'
 
-export default function SignIn() {
+export default function SignIn({ history }) {
+    const router = useRouter()
     return (
         <div
-            className="flex justify-center" style={{ width: "100vw" }}>
+            className="flex justify-center container" style={{ width: "100vw" }}>
             <div
-                style={{ marginTop: 180, maxWidth: 405, width: "100%" }}
-                className="bg-brand-green p20 br10">
-                <form action="" className="mt20 mb30">
+                style={{ marginTop: 40, maxWidth: 405, width: "100%" }}
+            >
+                <div className="f27 text-brand-green">
+                    Sign In
+            </div>
+                <div className="f16 text-brand-green">
+                    Please fill your details, to access your account
+                </div>
+                <form className="mt20 mb10 bg-brand-green p20 br10">
                     <div className="mb20">
                         <label
                             className="fw f16 mb5 block"
@@ -28,7 +38,9 @@ export default function SignIn() {
                             type="password" />
                     </div>
                     <div>
-                        <button className="bg-orange br10 full-width f14 p10 bd-o  fw">
+                        <button
+                            onClick={(e) => { e.preventDefault(); router.push(links.dashboard) }}
+                            className="bg-orange br10 full-width f14 p10 bd-o  fw">
                             sign in
                        </button>
                     </div>
@@ -36,6 +48,23 @@ export default function SignIn() {
 
 
                 </form>
+                <div className="center-text f14">
+                    <span className="text-brand-green">
+                        New Member? <Link href={links.signUp}>
+                            <a className="text-brand-orange">
+                                Open Account
+                            </a>
+                        </Link>
+                    </span>
+
+                </div>
+                <div className="center-text mt20 f14">
+                    <Link href={links.reset || ""}>
+                        <a className="text-brand-orange">
+                            Reset Password
+                        </a>
+                    </Link>
+                </div>
 
             </div>
 

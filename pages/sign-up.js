@@ -6,9 +6,13 @@ export default function SignIn({ history }) {
     const router = useRouter()
     return (
         <div
-            className="flex justify-center" style={{ width: "100vw" }}>
+            className="flex justify-center container" style={{ width: "100vw" }}>
             <div
-                style={{ marginTop: 20, maxWidth: 405, width: "100%" }}
+                style={
+                    {
+                        marginTop: 20,
+                        maxWidth: 405, width: "100%"
+                    }}
                 className="bg-brand-green p20 br10">
                 <form action="" className="mt20 mb30">
                     <div className="mb20">
