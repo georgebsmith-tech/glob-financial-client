@@ -271,3 +271,81 @@ box-shadow: 0 3px 20px #00000029;
 .bolder{
   font-weight: bolder;
 }
+
+.br8{
+  border-radius:8px;
+}
+
+.f19{
+  font-size: 19px;
+}
+
+
+.f33{
+  font-size: 33px;
+}
+
+.mt30{
+  margin-top: 30px;
+}
+
+
+.flex-end{
+  justify-content: flex-end;
+}
+
+.mt40{
+  margin-top:40px
+}
+
+.f13{
+  font-size: 13px;
+}
+
+.plr140{
+  padding-left: 140px;
+  padding-right: 140px;
+}
+.plr100{
+  padding-left: 100px;
+  padding-right: 100px;
+}
+
+.plr60{
+  padding-right: 60px;
+  padding-left: 60px;
+}
+
+.normal{
+  font-weight:normal ;
+}
+
+.f6{
+  font-size: 0.8rem;
+}
+
+
+.br5{
+  border-radius:5px;
+}
+
+.grid{
+  display: grid;
+}
+
+
+.grid7{
+grid-template-columns: repeat(7,1fr);
+}
+
+.nb {
+  white-space: nowrap;
+}
+
+.cg10{
+  column-gap: 10px;
+}
+
+.mb2{
+  margin-bottom: 2px;
+}
