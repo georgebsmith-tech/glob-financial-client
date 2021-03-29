@@ -349,3 +349,19 @@ grid-template-columns: repeat(7,1fr);
 .mb2{
   margin-bottom: 2px;
 }
+
+.br8{
+  border-radius:8px;
+}
+
+.fw{
+  width: 100%;
+}
+
+.bb{
+  border-bottom: 1px solid #8BBD4380;
+}
+
+.bd{
+  border: 1px solid #707070;
+}

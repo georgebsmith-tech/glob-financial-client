@@ -62,7 +62,7 @@ export default function SignIn() {
                                 <li className="f10">300 USD </li>
                                 <li className="f10">100 USD</li>
                                 <li>
-                                    <Link href={links.withdrawal || ""}>
+                                    <Link href={links.withdrawalDetails || ""}>
                                         <a className="f10 text-brand-orange bold">
                                             withdraw
                                 </a>
