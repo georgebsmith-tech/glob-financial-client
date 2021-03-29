@@ -365,3 +365,16 @@ grid-template-columns: repeat(7,1fr);
 .bd{
   border: 1px solid #707070;
 }
+
+.round{
+  border-radius:100px;
+}
+
+.place-center{
+  justify-content: center;
+  align-items: center;
+}
+
+.inline-block{
+  display: inline-block;
+}

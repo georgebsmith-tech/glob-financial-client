@@ -1,12 +1,16 @@
 import Head from 'next/head'
-import styles from '../styles/Home.module.css'
+import { useState } from 'react'
+import styles from '../styles/Assets.module.css'
 import { FaCheckCircle } from 'react-icons/fa'
+import links from '../configs/links'
+import Link from 'next/link'
 
 export default function Home() {
+    const [invType, setInvType] = useState("cash")
     const style = {
         investCat: {
-            paddingTop: 24,
-            paddingBottom: 24,
+            paddingTop: 15,
+            paddingBottom: 15,
             textAlign: "center",
             fontSize: 14,
             backgroundColor: "#CCCCCC",
@@ -14,25 +18,37 @@ export default function Home() {
             fontWeight: "bold"
         }
     }
+
+    let content;
+    if (invType === "crypto") {
+        content = <Crypto />
+    } else if (invType === "cash") {
+        content = <Cash />
+    }
     return (
-        <main style={{ margin: "30px 198px" }}>
+        <main className="container">
             <h1 style={{ fontSize: 30, fontWeight: "bold", color: "#000000", marginBottom: 27 }}
                 className="center-text">
                 CHOOSE AN ASSET
         </h1>
 
-            <div style={{ display: "grid", gridTemplateColumns: "repeat(3,1fr)", columnGap: 10 }}>
-                <div style={style.investCat}>
-                    CASH INVESTMENT
-                </div>
-                <div style={style.investCat}>
-                    CRYPTO INVESTMENT
-                </div>
-                <div style={style.investCat}>
-                    STOCK INVESTMENT
-                </div>
-            </div>
+            <div style={{ display: "grid", gridTemplateColumns: "repeat(3,1fr)", columnGap: 2 }}>
+                {
+                    ["CASH", "CRYPTO", "STOCK"].map((type) => <div
+                        className={type.toLowerCase() === invType && styles.activeAsset}
+                        data-type={type}
+                        onClick={(e) => { setInvType(e.target.dataset.type.toLowerCase()) }}
+                        style={style.investCat}>
+                        {type} INVESTMENT
+                </div>)
+                }
 
+
+            </div>
+            <section className="mt50">
+                {content}
+            </section>
+            {/* 
             <section className="mt35">
                 <div style={{ display: "grid", gridTemplateColumns: "0.8fr repeat(3,1fr)", columnGap: 5 }}>
                     <div>
@@ -81,7 +97,7 @@ export default function Home() {
                     bg="#CCCCCC"
                 />
 
-            </section>
+            </section> */}
 
 
 
@@ -89,10 +105,99 @@ export default function Home() {
     )
 }
 
+const Crypto = () => {
+    return (
+        <div>
+            <div className="br10">
+                <div
+                    className="flex justify-center align-center"
+                    style={{
+                        backgroundColor: "#E59011",
+                        paddingTop: 60,
+                        paddingBottom: 50
+                    }}>
+                    <div
+                        className="round bold bw flex place-center"
+                        style={{
+                            width: 78, height: 78,
+                            fontSize: 38,
+                            color: "#E59011",
+                            marginRight: 15
+                        }}>
+                        5%
+                    </div>
+                    <div >
+                        <div className="f19 tw bold">
+                            Return Of
+                        </div>
+                        <div className="f19 tw bold">
+                            Investment Monthly
+                        </div>
+                    </div>
+
+                </div>
+                <div
+                    style={{
+                        backgroundColor: "#E0E0E0",
+                        padding: "40px 10px 60px 10px"
+                    }}>
+                    <div >
+                        <div className="tb f18 bolder center-text">
+                            Investment in BTC is equivalent
+                    </div>
+                        <div className="tb f18 bolder center-text">
+                            to USD at the current BTC price
+                        </div>
+                    </div>
+                    <div className="center-text">
+                        <Link href={links.invest || ""}>
+                            <a
+                                style={{
+                                    backgroundColor: "rgba(56, 56, 56, 0.4)",
+                                    padding: "20px 70px"
+                                }}
+                                className="text-brand-orange p20 f24 inline-block bold mt10 br10">
+                                Invest
+                        </a>
+
+                        </Link>
+                    </div>
+                </div>
+
+            </div>
+
+        </div>
+    )
+}
+
+const Cash = () => {
+    return (
+        <div>
+            <InvestmentAsset
+
+                bg="#800080"
+                asset="PRIME"
+                range="$50 - $5000"
+            />
+            <InvestmentAsset
+                bg="#008000"
+                asset="PROPEL"
+                range="$1000 - $15000"
+            />
+            <InvestmentAsset
+                bg="#D4AF37"
+                asset="PROSPER"
+                range="$500 & ABOVE"
+            />
+        </div>
+    )
+}
+
+
 
 const InvestmentAsset = ({ range, asset, bg }) => {
     return (
-        <div>
+        <div className="mb20">
             <h3
                 style={{ borderRadius: "10px 10px 0 0", backgroundColor: bg }}
                 className="f17 p20 center-text fw" >

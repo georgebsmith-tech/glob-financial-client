@@ -14,17 +14,21 @@ const GuestHeader = ({ children }) => {
             <div>
 
                 <nav className="bg-brand-green">
-                    <div className="flex align-center space-between p15">
+                    <Link href="/">
 
-                        <h2>
-                            <span className="bold f16 fw">GLOB</span><span className="f16 fo">
-                                FINANCIAL
+
+                        <a className="flex align-center space-between p15 ">
+
+                            <h2>
+                                <span className="bold f16 fw">GLOB</span><span className="f16 fo">
+                                    FINANCIAL
                 </span>
-                        </h2>
-                        <div>
-                            burger
+                            </h2>
+                            <div>
+                                burger
                     </div>
-                    </div>
+                        </a>
+                    </Link>
                 </nav>
 
 
