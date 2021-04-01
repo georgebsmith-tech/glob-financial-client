@@ -11,9 +11,9 @@ const GuestHeader = ({ children }) => {
 
     if (isTabletOrMobile) {
         return (
-            <div>
+            <div className="pt25">
 
-                <nav className="bg-brand-green">
+                <nav className="bw">
                     <Link href="/">
 
 
@@ -25,8 +25,17 @@ const GuestHeader = ({ children }) => {
                 </span>
                             </h2>
                             <div>
-                                burger
-                    </div>
+                                <Link href="/sign-up">
+                                    <a
+                                        style={{
+                                            padding: "16px 46px",
+                                            boxShadow: "0px 4px 31px rgba(0, 0, 0, 0.15)"
+                                        }}
+                                        className="f16 tw bg-brand-orange ">
+                                        Register
+                            </a>
+                                </Link>
+                            </div>
                         </a>
                     </Link>
                 </nav>

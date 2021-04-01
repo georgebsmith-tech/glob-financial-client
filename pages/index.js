@@ -1,23 +1,23 @@
 import Head from 'next/head'
 import Link from 'next/link'
 import { FaFacebook } from 'react-icons/fa'
-import StepsToMembership from '../components/Home/StepsToMembership'
+import HowItWorks from '../components/Home/HowItWorks'
 
 import WhatTheySay from '../components/Home/WhatTheySay'
 
 export default function Home() {
   return (
     <div>
-      <div className="mobile-container">
-        <h2 className="f30 text-brand-green mb5"
-          style={{ fontWeight: 500 }}>
-          Start Your Journey To Financial Happiness.
+      <div className="container">
+        <h2 className="f18 text-brand-green mt30 center-text bolder"
+        >
+          Grow your money up to 10% monthly.
         </h2>
-        <h3 className="text-brand-orange f20 mb10">
-          Look Into Your Future With Confidence.
+        <h3 className="tb bolder f36 mb10 center-text mt20">
+          Start your journey to Financial happiness.
         </h3>
-        <p className="f16" style={{ fontStyle: "Regular" }}>
-          <span className="bold block mb5">Grow your money up to 10% every month.</span> Pay for your bills and other needs from your investment account, without using your return on investment(ROI). It gives you freedom.
+        <p className="f16 center-text" style={{ fontStyle: "Regular" }}>
+          <span className="bold block mb5">Grow your money up to 10% every month.</span> Your investment helps you pay your bills and meet other needs without having to touch your monthly ROI. This is freedom. Open an account now. Earn 10% more ROI
         </p>
       </div>
 
@@ -30,9 +30,11 @@ export default function Home() {
           alt="" />
       </div>
 
-      <StepsToMembership />
+      <HowItWorks />
 
+      <CalculateReturn />
       <OpenAcctLink />
+
 
       <WhatTheySay />
       <SubScribe />
@@ -43,6 +45,80 @@ export default function Home() {
       <RiskNotice />
 
 
+    </div>
+  )
+}
+
+
+const CalculateReturn = () => {
+  return (
+    <div className="mt50 container">
+      <h2 className="f33 tb bolder center-text">
+        Calculate Returns on Investment
+</h2>
+
+      <p
+        style={{ fontFamily: "Gilroy", lineHeight: 1.5 }}
+        className="f18 mt10">For Better understanding of your Investment Retuns, Calculate your ROI by selecting the membership Plan you are interested in.</p>
+
+      <div className="mt50">
+        <div>
+          <div>
+            <label htmlFor="" className="f18">Select Membership plan</label>
+          </div>
+
+          <select
+            style={{ width: "100%" }}
+            name="" id=""
+            className="p10 mt5">
+            <option value="Basic">Basic</option>
+            <option value="Basic">Basic</option>
+          </select>
+        </div>
+        <div className="mt30">
+          <div>
+            <label htmlFor="" className="f18">Enter Amount</label>
+          </div>
+
+          <input
+            type="number"
+            style={{ width: "100%" }}
+            name="" id=""
+            className="p10 mt5" />
+
+        </div>
+
+        <div className="mt30">
+          <div>
+            <label htmlFor="" className="f18">Select Duration</label>
+          </div>
+
+          <select
+            style={{ width: "100%" }}
+            name="" id=""
+            className="p10 mt5">
+            <option value="Basic">Basic</option>
+          </select>
+        </div>
+      </div>
+
+      <div
+        className="p20 mt30"
+        style={{ backgroundColor: "rgba(139,189,67,0.1)" }}>
+        <h3 className="center-text f24 tb">
+          Returns on Investment
+
+        </h3>
+        <div className="center-text f33 bolder mt30 text-brand-green">
+          Basic Investment Plan
+        </div>
+        <div
+          className="center-text bolder text-brand-orange mt50"
+          style={{ fontSize: 64 }}>
+
+          N 800
+        </div>
+      </div>
     </div>
   )
 }
@@ -141,14 +217,20 @@ const SubScribe = () => {
 
 const OpenAcctLink = () => {
   return (
-    <div className="center-text" style={{ padding: "20px 50px" }}>
+    <div>
+      <div className="center-text" style={{ padding: "20px 50px" }}>
 
-      <Link href="/sign-up" >
-        <a className="f16 br10 bg-brand-orange tw flex wrap" style={{ padding: "7px 45px" }}>
-          Open an account now Earn 10%
-          more on ROI
+        <Link href="/sign-up" >
+          <a className="f16 br5 bg-brand-orange tw wrap" style={{ padding: "10px 25px" }}>
+            Open an Account
          </a>
-      </Link>
+        </Link>
+
+      </div>
+
+      <div className="bolder tb center-text mt5 f18">
+        Earn 10% more on ROI
+      </div>
     </div>
   )
 }

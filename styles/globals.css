@@ -378,3 +378,20 @@ grid-template-columns: repeat(7,1fr);
 .inline-block{
   display: inline-block;
 }
+
+
+.pt25{
+  padding-top: 25px;
+}
+
+.f36{
+  font-size: 3.6rem;
+}
+
+.grid3{
+  grid-template-columns:repeat(3,1fr);
+}
+
+.gap10{
+  gap: 10px;
+}
