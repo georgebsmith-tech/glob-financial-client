@@ -29,6 +29,12 @@ const GuestFooter = ({ children }) => {
             </footer>
 
         )
+    } else {
+        return (
+            <footer>
+
+            </footer>
+        )
     }
 }
 
