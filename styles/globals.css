@@ -425,3 +425,15 @@ grid-template-columns: repeat(7,1fr);
 .hover-b{
   color:rgba(0,0,0,0.7);
 }
+
+.br8{
+  border-radius:8px;
+}
+
+.t-grey{
+  color:rgba(102,102,102,1);
+}
+
+.t-grey3{
+  color:rgba(130,130,130,1);
+}
