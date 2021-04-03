@@ -2,10 +2,68 @@ import Head from 'next/head'
 import Link from 'next/link'
 import { FaFacebook } from 'react-icons/fa'
 import HowItWorks from '../components/Home/HowItWorks'
+import GoogleLogin from 'react-google-login';
+import OurFeatures from '../components/Home/OurFeatures'
+import { useState, useEffect } from 'react'
+import Secured from '../components/Home/Secured'
+import axios from 'axios'
 
-import WhatTheySay from '../components/Home/WhatTheySay'
+import Subscribe from '../components/Subscribe'
 
 export default function Home() {
+
+  // useEffect(() => {
+
+
+  //   (async function () {
+  //     try {
+
+
+  //       const response = await axios.post("http://localhost:5000/auth/google", {
+  //         tokenId: "value"
+  //       })
+
+  //     } catch (err) {
+  //       console.log(err.responser)
+  //     }
+
+  //   })()
+  //   // return () => {
+  //   //   cleanup
+  //   // };
+  // });
+
+
+
+  const responseGoogleSuccess = async (resp) => {
+    console.log(resp)
+    try {
+
+
+      const response = await axios.post("http://localhost:5000/auth/google", {
+        tokenId: resp.tokenId
+      })
+      // const response = await fetch("http://localhost:6000/auth/google", {
+      //   method: "post",
+      //   body: JSON.stringify({ tokenId: resp.tokenId }),
+      //   headers: {
+      //     "Content-Type": "application/json"
+      //   }
+      // })
+
+      // console.log(response.json())
+    } catch (err) {
+      console.log(err)
+    }
+
+
+
+  }
+
+  const responseGoogleFailure = (resp) => {
+    console.log(resp)
+  }
+
   return (
     <div>
       <div className="container">
@@ -17,9 +75,17 @@ export default function Home() {
           Start your journey to Financial happiness.
         </h3>
         <p className="f16 center-text" style={{ fontStyle: "Regular" }}>
-          <span className="bold block mb5">Grow your money up to 10% every month.</span> Your investment helps you pay your bills and meet other needs without having to touch your monthly ROI. This is freedom. Open an account now. Earn 10% more ROI
+          Have an account that helps you grow wealth as well as meet your everyday needs.
         </p>
       </div>
+
+      {/* <GoogleLogin
+        clientId="680308519636-8u2rp8tbqqb8f14787746e7fmgoplns6.apps.googleusercontent.com"
+        buttonText="Login with Google"
+        onSuccess={responseGoogleSuccess}
+        onFailure={responseGoogleFailure}
+        cookiePolicy={'single_host_origin'}
+      /> */}
 
       <OpenAcctLink />
 
@@ -33,16 +99,23 @@ export default function Home() {
       <HowItWorks />
 
       <CalculateReturn />
-      <OpenAcctLink />
-
-
-      <WhatTheySay />
-      <SubScribe />
-      <div className="f30 tw center-text bg-brand-green p20 mt50 bold">
-        Start Investing Today Sign Up For Free
+      <div>
+        <OpenAcctLink />
+        <div className="p20">
+          <img
+            className="fw"
+            src="./images/home-oval.png" alt="" />
+        </div>
       </div>
-      <OurCommunities />
+
+
+
+      <OurFeatures />
+      <Secured />
+
       <RiskNotice />
+
+      <Subscribe />
 
 
     </div>
@@ -52,56 +125,74 @@ export default function Home() {
 
 const CalculateReturn = () => {
   return (
-    <div className="mt50 container">
-      <h2 className="f33 tb bolder center-text">
-        Calculate Returns on Investment
+    <div className="mt50 mb20">
+      <div className="container">
+
+
+        <h2 className="f33 tb bolder center-text">
+          Calculate Returns on Investment
 </h2>
 
-      <p
-        style={{ fontFamily: "Gilroy", lineHeight: 1.5 }}
-        className="f18 mt10">For Better understanding of your Investment Retuns, Calculate your ROI by selecting the membership Plan you are interested in.</p>
+        <p
+          style={{ fontFamily: "Gilroy", lineHeight: 1.5 }}
+          className="f18 mt10">For Better understanding of your Investment Retuns, Calculate your ROI by selecting the membership Plan you are interested in.</p>
 
-      <div className="mt50">
-        <div>
+        <div className="mt50">
           <div>
-            <label htmlFor="" className="f18">Select Membership plan</label>
+            <div>
+              <label htmlFor="" className="f18">Select Membership plan</label>
+            </div>
+
+            <select
+              style={{ width: "100%" }}
+              name="" id=""
+              className="p10 mt5 f18">
+              <option value="Basic">Cash</option>
+              <option value="Basic">Crypto</option>
+              <option value="Basic">Stock</option>
+            </select>
           </div>
 
-          <select
-            style={{ width: "100%" }}
-            name="" id=""
-            className="p10 mt5">
-            <option value="Basic">Basic</option>
-            <option value="Basic">Basic</option>
-          </select>
-        </div>
-        <div className="mt30">
-          <div>
-            <label htmlFor="" className="f18">Enter Amount</label>
+          <div className="mt30">
+            <div>
+              <label htmlFor="" className="f18">Select Account Type</label>
+            </div>
+
+            <select
+              style={{ width: "100%" }}
+              name="" id=""
+              className="p10 mt5 f18">
+              <option value="Basic">Propel</option>
+              <option value="Basic">Crypto</option>
+              <option value="Basic">Stock</option>
+            </select>
+          </div>
+          <div className="mt30">
+            <div>
+              <label htmlFor="" className="f18">Enter Amount</label>
+            </div>
+
+            <input
+              type="number"
+              style={{ width: "100%" }}
+              name="" id=""
+              className="p10 mt5 f18" />
+
           </div>
 
-          <input
-            type="number"
-            style={{ width: "100%" }}
-            name="" id=""
-            className="p10 mt5" />
+          <div className="mt30">
+            <div>
+              <label htmlFor="" className="f18">Percentage Return (monthly)</label>
+            </div>
 
-        </div>
+            <input
+              style={{ width: "100%" }}
+              className="p10 mt5 f18"
+              value="9%" disabled />
 
-        <div className="mt30">
-          <div>
-            <label htmlFor="" className="f18">Select Duration</label>
           </div>
-
-          <select
-            style={{ width: "100%" }}
-            name="" id=""
-            className="p10 mt5">
-            <option value="Basic">Basic</option>
-          </select>
         </div>
       </div>
-
       <div
         className="p20 mt30"
         style={{ backgroundColor: "rgba(139,189,67,0.1)" }}>
@@ -126,112 +217,40 @@ const CalculateReturn = () => {
 
 const RiskNotice = () => {
   return (
-    <div className="mobile-container mt50">
-      <p className="f16 tb">
-        <span className="text-brand-green bold">
-          RISK DISCLOSURE
-      </span>: All investments involve risks, including the possible loss of capital, before deciding to invest, you should carefully and dilligently consider your personal Investment objectives.
+    <div className="mobile-container mt50 center-text mb50">
+      <h2 className="f36 tb bolder mb20">
+        Risk disclosure
+      </h2>
+      <p
+        style={{ lineHeight: 1.5, color: "rgba(130,130,130,1)" }}
+        className="f24">
+        All investments involve risks, including the possible loss of capital, before deciding to invest, carefully and diligently consider your investment objectives.
       </p>
     </div>
   )
 }
 
-const OurCommunities = () => {
+const OpenAcctLink = ({ classes }) => {
   return (
-    <div
-      className="mobile-container"
-      style={{ marginTop: 80 }}>
-      <h2 className="text-brand-orange f30 mb10">
-        Our Communities
-      </h2>
-      <div>
-        <h4 className="f20 text-brand-green mb10">
-          Social
-        </h4>
-        <p className="f16 tb">
-          Join us with any of the social media handles, interact, engage and win amazing giveaways.
-        </p>
-        <ul
-          className="mt20 center-text"
-          style={{ display: "grid", gridTemplateColumns: "repeat(3,1fr" }}>
-          {
-            [2, 4, 6].map(() => <li>
-              <div>
-                <FaFacebook size="1.7rem" />
-              </div>
-              <Link href="#">
-                <a className="f16 tb">
-                  Facebook
-              </a>
-              </Link>
-            </li>)
-          }
-
-        </ul>
-      </div>
-    </div>
-  )
-}
-
-const SubScribe = () => {
-  return (
-    <div >
-      <div
-        style={{ padding: "30px 0px" }}
-        className="center-text f30">
-        <div className="text-brand-green bold">
-          Have Questions?
-         </div>
-
-
-        <div>
-
-
-          <span className="text-brand-green mr5 bold">
-            Let Us
-          </span>
-          <span className="text-brand-orange bold">
-            Help You.
-          </span>
-        </div>
-      </div>
-      <div className="mobile-container">
-        <div
-          style={{ display: "grid", gridTemplateColumns: "1.3fr 1fr" }}
-          className="center-text">
-          <input
-            className="br10 p10"
-            style={{ boxShadow: "0px 3px 20px #00000029", border: "1px solid #fff" }}
-            type="text" placeholder="Enter Your Email Here" />
-          <button
-            className="bg-brand-orange br10 tw"
-            style={{ boxShadow: "0px 3px 20px #00000029", border: "1px solid #fff" }}>
-            Subscribe
-            </button>
-        </div>
-      </div>
-    </div>
-  )
-}
-
-
-const OpenAcctLink = () => {
-  return (
-    <div>
-      <div className="center-text" style={{ padding: "20px 50px" }}>
+    <div className="container">
+      <div className={classes} style={{ padding: "20px 0" }}>
 
         <Link href="/sign-up" >
           <a className="f16 br5 bg-brand-orange tw wrap" style={{ padding: "10px 25px" }}>
-            Open an Account
+            Open An Account now
          </a>
         </Link>
 
       </div>
 
-      <div className="bolder tb center-text mt5 f18">
-        Earn 10% more on ROI
+      <div className={`bolder tb ${classes} mt5 f18`}>
+        Earn 10% more ROI
       </div>
     </div>
   )
+}
+
+OpenAcctLink.defaultProps = {
+  classes: "center-text"
 }
 

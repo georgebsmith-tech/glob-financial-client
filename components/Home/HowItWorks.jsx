@@ -1,18 +1,13 @@
 
-import { FaBriefcase, FaMoneyBill, FaMousePointer, FaSignature } from 'react-icons/fa'
-
-
-
-
 const HowItWorks = () => {
     return (
-        <div className="mt20 container">
+        <div className="mt50 container">
             <h2 className="center-text tb bold f33">
                 How It Works
       </h2>
-            <h5 className="center-text f16 mt10 normal">
+            {/* <h5 className="center-text f16 mt10 normal">
                 Join the Community of Globers in 4 simple ways
-      </h5>
+      </h5> */}
             <ul
 
                 className="center-text f16 mt20"

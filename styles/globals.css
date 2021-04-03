@@ -250,9 +250,6 @@ box-shadow: 0 3px 20px #00000029;
   padding: 30px;
 }
 
-.f23{
-  font-size: 23px;
-}
 
 
 .p40{
@@ -394,4 +391,16 @@ grid-template-columns: repeat(7,1fr);
 
 .gap10{
   gap: 10px;
+}
+
+.mb50{
+  margin-bottom: 50px;
+}
+
+.mb15{
+  margin-bottom: 15px;
+}
+
+.f23{
+  font-size: 2.3rem;
 }
