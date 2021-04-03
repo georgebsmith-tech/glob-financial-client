@@ -404,3 +404,24 @@ grid-template-columns: repeat(7,1fr);
 .f23{
   font-size: 2.3rem;
 }
+
+
+.mb70{
+  margin-bottom: 70px;
+}
+
+.lh2{
+  line-height:2
+}
+
+.lh1p5{
+  line-height:1.5
+}
+
+.hover-b:hover{
+  color:#000;
+}
+
+.hover-b{
+  color:rgba(0,0,0,0.7);
+}

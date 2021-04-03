@@ -32,7 +32,7 @@ Withdraw your fund at any time`
     ]
     return (
         <div
-            className="center-text"
+            className="center-text mt30"
             style={{
                 backgroundColor: "rgba(139,189,67,0.1)",
                 padding: "40px 3px 50px 3px"

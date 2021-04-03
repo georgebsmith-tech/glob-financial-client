@@ -1,6 +1,6 @@
 const Subscribe = () => {
     return (
-        <div className="center-text container">
+        <div className="center-text container mb70">
             <h2 className="f23 bolder tb">
                 Subscribe now to get our weekly financial newsletters. !
 

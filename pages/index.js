@@ -9,6 +9,8 @@ import Secured from '../components/Home/Secured'
 import axios from 'axios'
 
 import Subscribe from '../components/Subscribe'
+import PassiveIncome from '../components/Home/PassiveIncome';
+import ProtectYield from '../components/Home/ProtectYield'
 
 export default function Home() {
 
@@ -107,6 +109,11 @@ export default function Home() {
             src="./images/home-oval.png" alt="" />
         </div>
       </div>
+      <PassiveIncome />
+      <OpenAcctLink classes="left" />
+
+      <ProtectYield />
+      <OpenAcctLink classes="left" />
 
 
 
@@ -221,6 +228,10 @@ const RiskNotice = () => {
       <h2 className="f36 tb bolder mb20">
         Risk disclosure
       </h2>
+      <div className="mb10">
+
+        <img src="./images/Glob Financial/risk.svg" alt="" />
+      </div>
       <p
         style={{ lineHeight: 1.5, color: "rgba(130,130,130,1)" }}
         className="f24">
