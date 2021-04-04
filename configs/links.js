@@ -4,7 +4,8 @@ const links = {
     signIn: '/sign-in',
     dashboard: "/dashboard",
     withdrawal: "/withdrawal",
-    withdrawalDetails: "/withdrawal-details"
+    withdrawalDetails: "/withdrawal-details",
+    chooseAsset: "/choose-asset"
 }
 
 export default links;

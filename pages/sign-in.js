@@ -4,7 +4,7 @@ import links from '../configs/links'
 import Link from 'next/link'
 import { useRouter } from 'next/router'
 
-export default function SignIn({ history }) {
+const SignIn = ({ history }) => {
     const router = useRouter()
     return (
         <main className="container">
@@ -73,3 +73,7 @@ export default function SignIn({ history }) {
         </main>
     )
 }
+
+SignIn.layout = "auth"
+
+export default SignIn;

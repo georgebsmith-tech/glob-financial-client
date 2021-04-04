@@ -1,13 +1,13 @@
 import '../styles/globals.css'
-import GuestLayout from '../components/Layout/GuestLayout'
+import Layout from '../components/Layout/Layout'
 
 function MyApp({ Component, pageProps }) {
 
   return (
-    <GuestLayout >
+    <Layout >
       <Component {...pageProps} />
 
-    </GuestLayout>
+    </Layout>
   )
 }
 

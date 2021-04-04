@@ -5,7 +5,9 @@ import { FaCheckCircle } from 'react-icons/fa'
 import links from '../configs/links'
 import Link from 'next/link'
 
-export default function Home() {
+
+const ChooseAsset = function () {
+
     const [invType, setInvType] = useState("cash")
     const style = {
         investCat: {
@@ -26,15 +28,12 @@ export default function Home() {
         content = <Cash />
     }
     return (
-        <main className="container">
-            <h1 style={{ fontSize: 30, fontWeight: "bold", color: "#000000", marginBottom: 27 }}
-                className="center-text">
-                CHOOSE AN ASSET
-        </h1>
+        <main className="mt50">
 
-            <div style={{ display: "grid", gridTemplateColumns: "repeat(3,1fr)", columnGap: 2 }}>
+
+            <div style={{ display: "grid", gridTemplateColumns: "repeat(2,1fr)", columnGap: 2 }}>
                 {
-                    ["CASH", "CRYPTO", "STOCK"].map((type) => <div
+                    ["CASH", "CRYPTO"].map((type) => <div
                         className={type.toLowerCase() === invType && styles.activeAsset}
                         data-type={type}
                         onClick={(e) => { setInvType(e.target.dataset.type.toLowerCase()) }}
@@ -48,62 +47,14 @@ export default function Home() {
             <section className="mt50">
                 {content}
             </section>
-            {/* 
-            <section className="mt35">
-                <div style={{ display: "grid", gridTemplateColumns: "0.8fr repeat(3,1fr)", columnGap: 5 }}>
-                    <div>
-
-                    </div>
-                    <InvestmentAsset
-                        bg="#800080"
-                        asset="PRIME"
-                        range="$50 - $5000"
-                    />
-                    <InvestmentAsset
-                        bg="#008000"
-                        asset="PROPEL"
-                        range="$1000 - $15000"
-                    />
-                    <InvestmentAsset
-                        bg="#D4AF37"
-                        asset="PROSPER"
-                        range="$500 & ABOVE"
-                    />
-
-                </div>
-
-            </section>
-            <section className="mt5">
-
-                <AssetProperty
-                    bg="#CCCCCC"
-                    props={["Investment Period", "30 DAYS", "180 DAYS", "365 DAYS"]}
-                />
-                <AssetProperty
-                    bg="#E0E0E0"
-                    props={
-                        ["ROI", "7.5%", "9%", "10%"]
-                    }
-                />
-                <AssetPropertyReward
-                    bg="#CCCCCC"
-                    props={
-                        ["",]
-                    }
-                />
-                <AssetPropertyLife
-                    bg="#E0E0E0" />
-                <AssetPropertyGoalWallet
-                    bg="#CCCCCC"
-                />
-
-            </section> */}
-
-
-
         </main>
     )
 }
+
+
+ChooseAsset.layout = "auth"
+
+export default ChooseAsset;
 
 const Crypto = () => {
     return (
@@ -176,17 +127,17 @@ const Cash = () => {
             <InvestmentAsset
 
                 bg="#800080"
-                asset="PRIME"
+                asset="Prime"
                 range="$50 - $5000"
             />
             <InvestmentAsset
                 bg="#008000"
-                asset="PROPEL"
+                asset="Propel"
                 range="$1000 - $15000"
             />
             <InvestmentAsset
                 bg="#D4AF37"
-                asset="PROSPER"
+                asset="Prosper"
                 range="$500 & ABOVE"
             />
         </div>
@@ -197,27 +148,14 @@ const Cash = () => {
 
 const InvestmentAsset = ({ range, asset, bg }) => {
     return (
-        <div className="mb20">
-            <h3
-                style={{ borderRadius: "10px 10px 0 0", backgroundColor: bg }}
-                className="f17 p20 center-text fw" >
+        <div className="mt50 center-text" style={{ backgroundColor: "rgba(242,242,242,1)" }}>
+            <h2 className="f33" style={{ color: "rgba(139,189,67,1)" }}>
                 {asset}
-            </h3>
-            <div
-                className="center-text"
-                style={{ background: "transparent linear-gradient(180deg, #707070 0%, #383838 100%) 0% 0% no-repeat padding-box", padding: "33px 35px" }}>
-                <p
-                    className="fw mb10 bold"
-                    style={{ fontSize: 29 }}>
-                    {range}
-                </p>
-                <button
-                    style={{ color: "#E59011", padding: "11px 30px" }}
-                    className="br10 pointer">
-                    Invest
-</button>
-
+            </h2>
+            <div className="bold mt10" style={{ fontSize: 40 }}>
+                {range}
             </div>
+
         </div>
     )
 }
