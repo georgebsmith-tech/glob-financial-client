@@ -1,7 +1,7 @@
 import Head from 'next/head'
 import { useState } from 'react'
 import styles from '../styles/Assets.module.css'
-import { FaCheckCircle } from 'react-icons/fa'
+import { FaCheckCircle, FaCircle } from 'react-icons/fa'
 import links from '../configs/links'
 import Link from 'next/link'
 
@@ -9,17 +9,6 @@ import Link from 'next/link'
 const ChooseAsset = function () {
 
     const [invType, setInvType] = useState("cash")
-    const style = {
-        investCat: {
-            paddingTop: 15,
-            paddingBottom: 15,
-            textAlign: "center",
-            fontSize: 14,
-            backgroundColor: "#CCCCCC",
-            cursor: "pointer",
-            fontWeight: "bold"
-        }
-    }
 
     let content;
     if (invType === "crypto") {
@@ -31,16 +20,22 @@ const ChooseAsset = function () {
         <main className="mt50">
 
 
-            <div style={{ display: "grid", gridTemplateColumns: "repeat(2,1fr)", columnGap: 2 }}>
-                {
-                    ["CASH", "CRYPTO"].map((type) => <div
-                        className={type.toLowerCase() === invType && styles.activeAsset}
-                        data-type={type}
-                        onClick={(e) => { setInvType(e.target.dataset.type.toLowerCase()) }}
-                        style={style.investCat}>
-                        {type} INVESTMENT
-                </div>)
-                }
+            <div
+                className="f33 center-text"
+                style={{ display: "grid", gridTemplateColumns: "repeat(2,1fr)", boxShadow: "0px 0px 12px #F2F4F9" }}>
+
+                <div
+                    className={"bg-brand-orange bold " + ("cash" === invType && styles.activeAsset)}
+                    style={{ padding: 13, borderRadius: "10px 0 0 10px", color: "#F2F2F2" }}
+                    onClick={(e) => { setInvType("cash") }}>
+                    Cash
+                </div>
+                <div
+                    className={"text-brand-orange bold " + ("crypto" === invType && styles.activeAsset)}
+                    onClick={(e) => { setInvType("crypto") }}
+                    style={{ padding: 13, borderRadius: "0 10px 10px 0", backgroundColor: "#F2F2F2" }}>
+                    Crypto
+                </div>
 
 
             </div>
@@ -58,56 +53,77 @@ export default ChooseAsset;
 
 const Crypto = () => {
     return (
-        <div>
-            <div className="br10">
+        <div
+            style={{ marginTop: -70 }}
+            className="p15">
+            <div
+                style={{ position: "relative", bottom: -60 }}
+                className="flex justify-center">
+
+
                 <div
-                    className="flex justify-center align-center"
-                    style={{
-                        backgroundColor: "#E59011",
-                        paddingTop: 60,
-                        paddingBottom: 50
-                    }}>
+                    className="bw round flex justify-center align-center"
+                    style={{ width: 120, height: 120 }}>
+
+
                     <div
-                        className="round bold bw flex place-center"
-                        style={{
-                            width: 78, height: 78,
-                            fontSize: 38,
-                            color: "#E59011",
-                            marginRight: 15
-                        }}>
-                        5%
+                        className="round flex justify-center align-center"
+                        style={{ width: 100, height: 100, backgroundColor: "#F99400", }}>
+                        <img src="./images/Glob Financial/btc.svg" alt="" />
+                    </div>
+                </div>
+            </div>
+
+            <div className="br8">
+                <div
+                    className="center-text"
+                    style={{
+                        backgroundColor: "#F99400",
+                        paddingTop: 60,
+                        paddingBottom: 30,
+                        borderRadius: "10px 10px 0 0"
+                    }}>
+                    <div className="flex justify-center mb20">
+
+
+                        <div
+                            className="round bold bw flex place-center text-brand-green mt20"
+                            style={{
+                                width: 100, height: 100,
+                                fontSize: 52,
+
+
+                            }}>
+                            5%
+                    </div>
                     </div>
                     <div >
                         <div className="f19 tw bold">
-                            Return Of
+                            Monthly Returns on Investment
                         </div>
-                        <div className="f19 tw bold">
-                            Investment Monthly
-                        </div>
+
                     </div>
 
                 </div>
                 <div
                     style={{
-                        backgroundColor: "#E0E0E0",
-                        padding: "40px 10px 60px 10px"
+                        backgroundColor: "#F2F2F2",
+                        padding: "40px 10px 60px 10px",
+                        borderRadius: "0px 0px 10px 10px"
                     }}>
-                    <div >
-                        <div className="tb f18 bolder center-text">
-                            Investment in BTC is equivalent
-                    </div>
-                        <div className="tb f18 bolder center-text">
-                            to USD at the current BTC price
+                    <div className="mb50">
+                        <div className="f24 center-text">
+                            Investment in BTC is equivalent to USD at the current BTC price
                         </div>
                     </div>
                     <div className="center-text">
-                        <Link href={links.invest || ""}>
+                        <Link href="/fund-account?kind=btc">
                             <a
                                 style={{
-                                    backgroundColor: "rgba(56, 56, 56, 0.4)",
-                                    padding: "20px 70px"
+
+                                    padding: "15px 70px"
                                 }}
-                                className="text-brand-orange p20 f24 inline-block bold mt10 br10">
+                                className="text-brand-orange p20 f24 inline-block bold mt10 br10 fw bg-brand-green">
                                 Invest
                         </a>
 
@@ -148,12 +164,61 @@ const Cash = () => {
 
 const InvestmentAsset = ({ range, asset, bg }) => {
     return (
-        <div className="mt50 center-text" style={{ backgroundColor: "rgba(242,242,242,1)" }}>
-            <h2 className="f33" style={{ color: "rgba(139,189,67,1)" }}>
-                {asset}
-            </h2>
-            <div className="bold mt10" style={{ fontSize: 40 }}>
-                {range}
+        <div className="mt50 center-text" style={{ backgroundColor: "rgba(242,242,242,1)", padding: "30px 20px" }}>
+            <div style={{ borderBottom: "1px solid #fff" }}>
+                <h2 className="f33" style={{ color: "rgba(139,189,67,1)" }}>
+                    {asset}
+                </h2>
+                <div className="bold mt10" style={{ fontSize: 40 }}>
+                    {range}
+                </div>
+                <div className="mt20 mb20">
+                    <button
+                        style={{ padding: "10px 42px" }}
+                        className="tw bg-brand-orange br8 bd-o">
+                        Invets
+                </button>
+                </div>
+            </div>
+            <div style={{ borderBottom: "1px solid #fff" }} className="p20">
+                <div className="f18 bold">
+                    Investment Period
+                </div>
+                <div className="f18 bold">
+                    30 Days
+                </div>
+            </div>
+            <div style={{ borderBottom: "1px solid #fff" }} className="p20">
+                <div className="f18 bold">
+                    ROI
+                </div>
+                <div className="f18 bold">
+                    7.5%
+                </div>
+            </div>
+            <div style={{ borderBottom: "1px solid #fff" }} className="p20">
+                <div className="f18 bold">
+                    Rewards and Benefits
+                </div>
+                <div className="f18 bold">
+                    <FaCircle />
+                </div>
+            </div>
+            <div style={{ borderBottom: "1px solid #fff" }} className="p20">
+                <div className="f18 bold">
+                    Life Account
+                </div>
+                <div className="f18 bold">
+                    <FaCircle />
+                </div>
+            </div>
+            <div style={{ borderBottom: "1px solid #fff" }} className="p20">
+                <div className="f18 bold">
+                    Goal  Wallet
+                </div>
+                <div className="f18 bold">
+                    <FaCircle />
+                </div>
             </div>
 
         </div>
