@@ -6,6 +6,7 @@ export default function Card() {
     
     return (
         <div>
+            
             <div 
                 className="v-shadow p10 mt20" style={{fontSize:'20px'}}>
                 <h3 className="tb f23 mb10">

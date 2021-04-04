@@ -1,4 +1,18 @@
 @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500&display=swap');
+@import url('http://fonts.cdnfonts.com/css/tt-commons');
+@import url('http://fonts.cdnfonts.com/css/svn-gilroy');
+@import url('https://fonts.googleapis.com/css?family=Nunito');
+
+
+.tt{
+  font-family: 'TT Commons', sans-serif;
+}
+.gil{
+  font-family: 'SVN-Gilroy', sans-serif;
+}
+.nun{
+  font-family: Nunito;
+}
 
 html,
 body {
