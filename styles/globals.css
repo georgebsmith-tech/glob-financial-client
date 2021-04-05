@@ -463,3 +463,7 @@ grid-template-columns: repeat(7,1fr);
 .relative{
   position: relative;
 }
+
+.grid3{
+  grid-template-columns: repeat(3,1fr);
+}

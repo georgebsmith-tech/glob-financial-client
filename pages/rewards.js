@@ -195,24 +195,29 @@ const Cards = () => {
 const Card = () => {
     return (
         <li
-            className="center-text bw"
-            style={{ boxShadow: "2px 6px 30px 3px rgba(0, 0, 0, 0.1)", padding: "50px 20px 30px 20px", marginBottom: 60, height: 200 }}>
-            <h2 className="tb bold mb20 f24">
-                Card
-                </h2>
-            <p className="f14">
-                <div className="mb20">
-                    Earns 7.5% Prime Account
-            </div>
-                <div>
+        >
+            <Link href="/choose-asset?kind=cash">
 
-                    9% Propel Account
+                <div className="center-text bw"
+                    style={{ boxShadow: "2px 6px 30px 3px rgba(0, 0, 0, 0.1)", padding: "50px 20px 30px 20px", marginBottom: 60, height: 200 }}>
+                    <h2 className="tb bold mb20 f24">
+                        Card
+                </h2>
+                    <p className="f14">
+                        <div className="mb20">
+                            Earns 7.5% Prime Account
             </div>
-                <div>
-                    10% Prosper Account.
+                        <div>
+
+                            9% Propel Account
+            </div>
+                        <div>
+                            10% Prosper Account.
               </div>
 
-            </p>
+                    </p>
+                </div>
+            </Link>
         </li>
     )
 }

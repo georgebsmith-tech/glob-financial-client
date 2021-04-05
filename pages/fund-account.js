@@ -4,18 +4,25 @@ import links from '../configs/links'
 import Link from 'next/link'
 import { useRouter } from 'next/router'
 
-const FundAccount = ({ location, history }) => {
+const FundAccount = () => {
     const router = useRouter()
     const page = router.query.kind
+    const option = router.query.option
+    console.log(option)
     let content;
     if (page === "btc") {
         content = <BTC />
     } else if (page === "card-options") {
-        content = <CardOptions />
-    } else if (page === "payment-details") {
-        content = <CardDetails />
-    }
+        if (!option) {
+            content = <CardOptions />
+        } else if (option === "card") {
+            content = content = <CardDetails />
+        } else if (option === "paypal") {
+            content = content = <PayPal />
+        }
 
+
+    }
     return (
         <main>
             <h1
@@ -132,22 +139,30 @@ const CardDetails = () => {
 const CardOptions = () => {
     const options = [
         {
-            name: "Credit card"
+            name: "Credit card",
+            option: "card"
         },
         {
-            name: "PayPal"
+            name: "PayPal",
+            option: "paypal"
         },
         {
-            name: "Bank"
+            name: "Bank",
+            option: "bank"
         }
     ]
     return (
         <>
             <ul className="mt30">
                 {
-                    options.map(option => <li className="f16 tw mb20"
-                        style={{ backgroundColor: "#8BBD43", padding: "13px 10px 13px 30px" }}>
-                        {option.name}
+                    options.map(option => <li >
+                        <Link href={"/fund-account?kind=card-options&option=" + option.option}>
+                            <div className="f16 tw mb20"
+                                style={{ backgroundColor: "#8BBD43", padding: "13px 10px 13px 30px" }}>
+                                {option.name}
+                            </div>
+                        </Link>
+
                     </li>)
                 }
             </ul>
@@ -220,6 +235,80 @@ const BTC = () => {
 
             </form>
         </>
+    )
+}
+
+
+const PayPal = () => {
+    const router = useRouter()
+    return (
+        <div className="mt50">
+            <form action="">
+                <div className="f16 mb20">
+                    <label
+                        className="t-grey block mb10"
+                        htmlFor="">
+                        Email Address
+                    </label>
+                    <input
+
+                        className="fw br5 f16 t-grey3"
+                        style={{
+                            padding: "11px 15px",
+                            backgroundColor: "rgba(250,250,250,1)",
+                            border: "1px solid rgba(250,250,250,1)"
+                        }}
+                        placeholder="Enter Email Address"
+                        type="email" />
+                </div>
+                <div className="f16 mb20">
+                    <label
+                        className="t-grey block mb10"
+                        htmlFor="">
+                        Select Amount
+                    </label>
+                    <input
+
+                        className="fw br5 f16 t-grey3"
+                        style={{
+                            padding: "11px 15px",
+                            backgroundColor: "rgba(250,250,250,1)",
+                            border: "1px solid rgba(250,250,250,1)"
+                        }}
+                        placeholder="Enter Email Address"
+                        type="email" />
+                </div>
+
+                <div className="f16 mb10">
+                    <label
+                        className="t-grey block mb10"
+                        htmlFor="">
+                        Password
+                    </label>
+                    <input
+
+                        className="fw br5 f16 t-grey3"
+                        style={{
+                            padding: "11px 15px",
+                            backgroundColor: "rgba(250,250,250,1)",
+                            border: "1px solid rgba(250,250,250,1)"
+                        }}
+                        placeholder="create new Password"
+                        type="email" />
+                </div>
+
+
+
+                <div className="center-text mt30 ">
+                    <button
+                        onClick={(e) => { e.preventDefault(); router.push("/dashboard") }}
+                        className="tw br8 bg-brand-orange bd-o fw"
+                        style={{ padding: "11px 111px" }}>
+                        Proceed
+                        </button>
+                </div>
+            </form>
+        </div>
     )
 }
 
