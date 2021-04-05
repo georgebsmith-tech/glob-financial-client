@@ -445,3 +445,21 @@ grid-template-columns: repeat(7,1fr);
 .gap20{
   gap:20px;
 }
+
+.pl20{
+  padding-left: 20px;
+}
+
+
+.f28{
+  font-size: 2.8rem;
+}
+
+.mb50{
+  margin-bottom: 50px;
+}
+
+
+.relative{
+  position: relative;
+}

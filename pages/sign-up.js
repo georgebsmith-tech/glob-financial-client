@@ -108,7 +108,7 @@ const SignUp = ({ history }) => {
                     <div
                         className="center-text mt30 ">
                         <button
-                            onClick={(e) => { e.preventDefault(); router.push(links.chooseAsset) }}
+                            onClick={(e) => { e.preventDefault(); router.push(links.rewards) }}
                             className="tw br8 bg-brand-orange bd-o"
                             style={{ padding: "11px 111px" }}>
                             Register

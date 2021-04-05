@@ -5,7 +5,8 @@ const links = {
     dashboard: "/dashboard",
     withdrawal: "/withdrawal",
     withdrawalDetails: "/withdrawal-details",
-    chooseAsset: "/choose-asset"
+    chooseAsset: "/choose-asset",
+    rewards: "/rewards"
 }
 
 export default links;

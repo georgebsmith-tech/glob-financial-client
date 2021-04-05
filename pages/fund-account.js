@@ -7,6 +7,14 @@ import { useRouter } from 'next/router'
 const FundAccount = ({ location, history }) => {
     const router = useRouter()
     const page = router.query.kind
+    let content;
+    if (page === "btc") {
+        content = <BTC />
+    } else if (page === "card-options") {
+        content = <CardOptions />
+    } else if (page === "payment-details") {
+        content = <CardDetails />
+    }
 
     return (
         <main>
@@ -19,9 +27,7 @@ const FundAccount = ({ location, history }) => {
                 style={{ boxShadow: "0px 16px 35px rgba(0, 0, 0, 0.0675668)", borderRadius: 16, padding: "10px 10px 30px 10px", margin: 15 }}
                 className="mt50" >
 
-                {
-                    page === "card-details" ? <CardDetails /> : <BTC />
-                }
+                {content}
 
             </div>
 
@@ -123,6 +129,31 @@ const CardDetails = () => {
     )
 }
 
+const CardOptions = () => {
+    const options = [
+        {
+            name: "Credit card"
+        },
+        {
+            name: "PayPal"
+        },
+        {
+            name: "Bank"
+        }
+    ]
+    return (
+        <>
+            <ul className="mt30">
+                {
+                    options.map(option => <li className="f16 tw mb20"
+                        style={{ backgroundColor: "#8BBD43", padding: "13px 10px 13px 30px" }}>
+                        {option.name}
+                    </li>)
+                }
+            </ul>
+        </>
+    )
+}
 const BTC = () => {
     return (
         <>
@@ -160,7 +191,7 @@ const BTC = () => {
                     <label
                         className="t-grey block mb10"
                         htmlFor="">
-                        Receive
+                        Dolla worth
                     </label>
                     <input
 
@@ -170,21 +201,20 @@ const BTC = () => {
                             backgroundColor: "rgba(250,250,250,1)",
                             border: "1px solid rgba(250,250,250,1)"
                         }}
-                        placeholder="Amount to receive"
-                        type="number" />
+                        placeholder="Dolla Equivalent"
+                        type="number" disabled />
                     <div className="f16 mt10 flex flex-end">
-                        Maximum BTC to USD  is $100
+                        Minimum BTC to USD  is $100
                         </div>
                 </div>
 
 
                 <div className="center-text mt30 ">
-                    <Link href="/fund-account?kind=payment-options">
-                        <a className="tw br8 bg-brand-orange bd-o fw block f14"
-                            style={{ padding: "11px" }}>
-                            Proceed to Fund Account
-                        </a>
-                    </Link>
+                    <button className="tw br8 bg-brand-orange bd-o fw block f14"
+                        style={{ padding: "11px" }}>
+                        Proceed to Fund Account
+                        </button>
+
                 </div>
 
 

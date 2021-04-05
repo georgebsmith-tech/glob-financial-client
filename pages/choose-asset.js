@@ -4,6 +4,7 @@ import styles from '../styles/Assets.module.css'
 import { FaCheckCircle, FaCircle } from 'react-icons/fa'
 import links from '../configs/links'
 import Link from 'next/link'
+import { useRouter } from 'next/router'
 
 
 const ChooseAsset = function () {
@@ -138,6 +139,7 @@ const Crypto = () => {
 }
 
 const Cash = () => {
+
     return (
         <div>
             <InvestmentAsset
@@ -163,6 +165,7 @@ const Cash = () => {
 
 
 const InvestmentAsset = ({ range, asset, bg }) => {
+    const router = useRouter()
     return (
         <div className="mt50 center-text" style={{ backgroundColor: "rgba(242,242,242,1)", padding: "30px 20px" }}>
             <div style={{ borderBottom: "1px solid #fff" }}>
@@ -174,6 +177,7 @@ const InvestmentAsset = ({ range, asset, bg }) => {
                 </div>
                 <div className="mt20 mb20">
                     <button
+                        onClick={(e) => { e.preventDefault(); router.push("/fund-account?kind=card-options") }}
                         style={{ padding: "10px 42px" }}
                         className="tw bg-brand-orange br8 bd-o">
                         Invets
