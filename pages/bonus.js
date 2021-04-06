@@ -5,7 +5,7 @@ import links from '../configs/links'
 import Link from 'next/link'
 import { useRouter } from 'next/router'
 
-import { FaSmileO } from 'react-icons/fa'
+import { FaCashRegister, FaGift, FaHeadphones, FaMoneyBill, FaSmileO } from 'react-icons/fa'
 
 export default function SignIn() {
 
@@ -15,6 +15,10 @@ export default function SignIn() {
     const options = ["referrals", "gift", "contest"]
     if (active === "referrals") {
         content = <Referrals />
+    } else if (active === "gift") {
+        content = <Gift />
+    } else if (active === "contest") {
+        content = <Contest />
     }
     return (
         <div
@@ -42,6 +46,168 @@ export default function SignIn() {
 
 
 
+    )
+}
+
+const Contest = () => {
+    return (
+        <>
+            <GiveAway />
+            <OngoingContest />
+            <ContestRewards />
+        </>
+    )
+}
+
+const OngoingContest = () => {
+    return (
+        <div className="mt10 bw">
+            <h2 className="f14 p15" style={{ borderBottom: "2px solid #00000029" }}>
+                ONGOING CONTESTS
+            </h2>
+            <div className="p15 center-text">
+                <div className="f16">
+                    Refer your friends an earn amazing prizes at the end of the month. The link to the leadership board.
+                </div>
+                <div
+                    className="mt10"
+                    style={{ paddingBottom: 60 }}>
+                    <button className="br5 bd-o bg-brand-orange tw bold fw p10">
+                        Attend Contest
+    </button>
+                </div>
+            </div>
+            <div style={{ borderTop: "2px solid #00000029" }}>
+                <Link href="#">
+                    <div className="f14 p10 text-brand-orange flex flex-end">
+                        View All Contests
+    </div>
+                </Link>
+            </div>
+        </div>
+    )
+}
+
+const ContestRewards = () => {
+    return (
+        <div className="mt10 bw">
+            <h2 className="f14 p15" style={{ borderBottom: "2px solid #00000029" }}>
+                MY CONTEST REWARDS
+            </h2>
+            <div>
+                <div style={{ paddingTop: 40 }}>
+                    <div style={{ backgroundColor: "#A393BA" }}>
+                        <h4 className="f20 tb bolder p20">
+                            You earned
+                </h4>
+
+                        <div className="f30 tw bold" style={{ padding: "0px 0px 0px 40px" }}>
+                            1,230.32 USD
+</div>
+                        <Link href={links.withdraw || ""}>
+                            <a className="text-brand-orange bold f18 mb20 block p20">
+                                Withdraw
+                </a>
+
+                        </Link>
+                    </div>
+                </div>
+
+            </div>
+            <div>
+                <div className="f14 ml15">
+                    Referal bonuses is processed within30days.
+                </div>
+
+            </div>
+            <div
+                className="p15 mt10"
+                style={{ marginBottom: 30 }}>
+                <button className="br5 bd-o bg-brand-orange tw bold fw p10">
+                    Go to Contest
+    </button>
+            </div>
+        </div>
+    )
+}
+
+
+const GiveAway = () => {
+    return (
+        <div className="bw p15 mt10 pt30">
+            <h2 className="f14 center-text tb bold">
+                JOIN OUR CONTESTS AND EARN EXCITING REWARDS AND GIVEAWAYS.
+            </h2>
+            <ul className="f14 grid grid3 center-text mt30 mb50">
+                <li>
+                    <div className="tb bold">
+                        Gift Cards
+                </div>
+                    <div className="mt10">
+                        <FaGift size="2.5rem" />
+                    </div>
+
+                </li>
+                <li>
+                    <div className="tb bold">
+                        Cash Prize
+                </div>
+                    <div className="mt10">
+                        <FaMoneyBill size="2.5rem" />
+                    </div>
+
+                </li>
+                <li>
+                    <div className="tb bold">
+                        Gadgets
+                </div>
+                    <div className="mt10">
+                        <FaHeadphones size="2.5rem" />
+                    </div>
+
+                </li>
+            </ul>
+        </div>
+    )
+}
+
+
+const Gift = () => {
+    return (
+        <>
+            <Phone />
+            <InvCard />
+        </>
+    )
+}
+
+const Phone = () => {
+    return (
+        <div className="bw p15 mt10 hoverflow-hidden">
+            <div className="tb bold f18">
+                {"  Open a VIP ACCOUNT FROM $50,000 AND ABOVE AND WIN A BRAND NEW IPHONE 12MAX PRO WITH $1000 ON YOUR VIRTUAL CARD FOR SPENDING.".toUpperCase()}
+            </div>
+            <div style={{ marginLeft: "25%", position: "relative", top: -45 }}>
+                <img src="./images/phone.png" alt="" />
+            </div>
+            <div style={{ marginTop: -40, marginBottom: 30 }}>
+                <button className="br5 bd-o bg-brand-orange tw bold fw p10">
+                    Add more to your Asset
+    </button>
+            </div>
+        </div>
+    )
+}
+
+const InvCard = () => {
+    return (
+        <div className="bw mt10 hoverflow-hidden">
+            <div >
+                <img
+                    className="fw"
+                    src="./images/card1.svg" alt="" />
+            </div>
+        </div>
     )
 }
 
