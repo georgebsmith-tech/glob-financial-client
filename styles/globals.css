@@ -34,7 +34,15 @@ ul{
 .text-brand-orange{
   color: #F86F1F;
 }
+
+.tbo{
+  color: #F86F1F;
+}
 .bg-brand-orange{
+  background-color: #F86F1F;
+}
+
+.bbo{
   background-color: #F86F1F;
 }
 
@@ -51,8 +59,16 @@ ul{
   color:#8BBD43;
 }
 
+.tbg{
+  color:#8BBD43;
+}
+
 .pt30{
   padding-top:30px;
+}
+
+.f13{
+  font-size: 1.3rem;
 }
 
 
@@ -389,6 +405,10 @@ grid-template-columns: repeat(7,1fr);
   grid-template-columns:repeat(3,1fr);
 }
 
+.grid2{
+  grid-template-columns:repeat(2,1fr);
+}
+
 .gap10{
   gap: 10px;
 }
@@ -480,3 +500,13 @@ grid-template-columns: repeat(7,1fr);
 .ml15{
   margin-left: 15px;
 }
+
+.ct{
+  text-align: center;
+}
+
+.f12{
+  font-size: 1.2rem;
+}
+
+

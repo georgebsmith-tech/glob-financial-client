@@ -10,7 +10,8 @@ import axios from 'axios'
 
 import Subscribe from '../components/Subscribe'
 import PassiveIncome from '../components/Home/PassiveIncome';
-import ProtectYield from '../components/Home/ProtectYield'
+import ProtectYield from '../components/Home/ProtectYield';
+import FacebookLogin from 'react-facebook-login';
 
 export default function Home() {
 
@@ -35,7 +36,9 @@ export default function Home() {
   //   // };
   // });
 
-
+  const responseFacebook = (response) => {
+    console.log(response)
+  }
 
   const responseGoogleSuccess = async (resp) => {
     console.log(resp)
@@ -53,7 +56,7 @@ export default function Home() {
       //   }
       // })
 
-      // console.log(response.json())
+      console.log(response.data)
     } catch (err) {
       console.log(err)
     }
@@ -87,7 +90,16 @@ export default function Home() {
         onSuccess={responseGoogleSuccess}
         onFailure={responseGoogleFailure}
         cookiePolicy={'single_host_origin'}
-      /> */}
+      />
+
+      <FacebookLogin
+        appId="1088597931155576"
+        autoLoad={true}
+        fields="name,email,picture"
+        // onClick={componentClicked}
+        callback={responseFacebook} /> */}
+
+
 
       <OpenAcctLink />
 
