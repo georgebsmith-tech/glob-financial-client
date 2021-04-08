@@ -128,16 +128,12 @@ const ActiveInvestments = () => {
             </ul>
             <div className="mt30">
                 <Link href="#">
-                    <div className="f18 tbo bolder ct">
+                    <a className="f18 tbo bolder ct block pointer">
                         View All
-                    </div>
+                    </a>
                 </Link>
             </div>
-
-
-
         </div>
-
     )
 }
 

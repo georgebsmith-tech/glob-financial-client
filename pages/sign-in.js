@@ -3,9 +3,35 @@ import styles from '../styles/Home.module.css'
 import links from '../configs/links'
 import Link from 'next/link'
 import { useRouter } from 'next/router'
+import { useState } from 'react'
+import baseURL from '../configs/baseURL'
+const log = console.log
+import axios from 'axios'
+
 
 const SignIn = ({ history }) => {
     const router = useRouter()
+    const [credientials, setCredientials] = useState({ email: "", password: "" })
+    const [loginError, setLoginError] = useState("")
+
+
+    const login = async (credientials) => {
+        try {
+            const response = await axios.post(`${baseURL}/auth/login`, credientials)
+            const data = response.data
+            log(data)
+        } catch (error) {
+            log(error.response.data.error)
+            setLoginError(error.response.data.error)
+        }
+
+    }
+    const handleLogin = (e) => {
+        e.preventDefault()
+        // log(credientials)
+        login(credientials)
+
+    }
     return (
         <main className="container">
             <h1
@@ -13,6 +39,11 @@ const SignIn = ({ history }) => {
                 class="tb f36">
                 Log In
         </h1>
+            {
+                loginError && <div style={{ marginTop: 20, textAlign: "center", border: "1px solid red", borderRadius: 5, fontSize: 14, padding: 10 }}>
+                    {loginError}
+                </div>
+            }
             <div className="mt50">
                 <form action="">
                     <div className="f16 mb20">
@@ -22,7 +53,8 @@ const SignIn = ({ history }) => {
                             Email Address
                     </label>
                         <input
-
+                            onChange={(e) => setCredientials({ ...credientials, email: e.target.value })}
+                            value={credientials.email}
                             className="fw br5 f16 t-grey3"
                             style={{
                                 padding: "11px 15px",
@@ -40,14 +72,15 @@ const SignIn = ({ history }) => {
                             Password
                     </label>
                         <input
-
+                            onChange={(e) => setCredientials({ ...credientials, password: e.target.value })}
+                            value={credientials.password}
                             className="fw br5 f16 t-grey3"
                             style={{
                                 padding: "11px 15px",
                                 backgroundColor: "rgba(250,250,250,1)",
                                 border: "1px solid rgba(250,250,250,1)"
                             }}
-                            placeholder="create new Password"
+                            placeholder="Password"
                             type="email" />
                     </div>
                     <div className="flex space-between align-center">
@@ -79,7 +112,9 @@ const SignIn = ({ history }) => {
 
 
                     <div className="center-text mt30 ">
-                        <button className="tw br8 bg-brand-orange bd-o fw"
+                        <button
+                            onClick={handleLogin}
+                            className="tw br8 bg-brand-orange bd-o fw"
                             style={{ padding: "11px 111px" }}>
                             Login
                         </button>
