@@ -81,7 +81,7 @@ const SignIn = ({ history }) => {
                                 border: "1px solid rgba(250,250,250,1)"
                             }}
                             placeholder="Password"
-                            type="email" />
+                            type="password" />
                     </div>
                     <div className="flex space-between align-center">
 
