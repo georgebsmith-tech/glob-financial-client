@@ -5,11 +5,13 @@ import { FaCheckCircle, FaCircle } from 'react-icons/fa'
 import links from '../configs/links'
 import Link from 'next/link'
 import { useRouter } from 'next/router'
+const log = console.log
 
 
 const ChooseAsset = function () {
+    const router = useRouter()
 
-    const [invType, setInvType] = useState("cash")
+    const [invType, setInvType] = useState(router.query.kind)
 
     let content;
     if (invType === "crypto") {
@@ -26,14 +28,14 @@ const ChooseAsset = function () {
                 style={{ display: "grid", gridTemplateColumns: "repeat(2,1fr)", boxShadow: "0px 0px 12px #F2F4F9" }}>
 
                 <div
-                    className={"bg-brand-orange bold " + ("cash" === invType && styles.activeAsset)}
+                    className={"bg-brand-orange bold pointer " + ("cash" === invType && styles.activeAsset)}
                     style={{ padding: 13, borderRadius: "10px 0 0 10px", color: "#F2F2F2" }}
-                    onClick={(e) => { setInvType("cash") }}>
+                    onClick={(e) => { setInvType("cash"); router.push("/choose-asset?kind=cash") }}>
                     Cash
                 </div>
                 <div
-                    className={"text-brand-orange bold " + ("crypto" === invType && styles.activeAsset)}
-                    onClick={(e) => { setInvType("crypto") }}
+                    className={"text-brand-orange bold pointer " + ("crypto" === invType && styles.activeAsset)}
+                    onClick={(e) => { setInvType("crypto"); router.push("/choose-asset?kind=crypto") }}
                     style={{ padding: 13, borderRadius: "0 10px 10px 0", backgroundColor: "#F2F2F2" }}>
                     Crypto
                 </div>
@@ -176,12 +178,13 @@ const InvestmentAsset = ({ range, asset, bg }) => {
                     {range}
                 </div>
                 <div className="mt20 mb20">
-                    <button
-                        onClick={(e) => { e.preventDefault(); router.push("/fund-account?kind=card-options") }}
-                        style={{ padding: "10px 42px" }}
-                        className="tw bg-brand-orange br8 bd-o">
-                        Invets
-                </button>
+                    <Link href="/fund-account?kind=card-options">
+                        <a
+                            style={{ padding: "10px 42px" }}
+                            className="tw bg-brand-orange br8 bd-o">
+                            Invets
+                </a>
+                    </Link>
                 </div>
             </div>
             <div style={{ borderBottom: "1px solid #fff" }} className="p20">
@@ -229,150 +232,3 @@ const InvestmentAsset = ({ range, asset, bg }) => {
     )
 }
 
-
-const AssetProperty = ({ props = [], bg }) => {
-    return (
-        <div style={{ display: "grid", gridTemplateColumns: "0.8fr repeat(3,1fr)", columnGap: 5, marginBottom: 5 }}>
-            <div
-                style={{ backgroundColor: bg }}
-                className="center-text f20 p20 bold">
-                {props[0]}
-            </div>
-            <div
-                style={{ backgroundColor: bg }}
-                className="center-text f20 p20 bold">
-                {props[1]}
-            </div>
-            <div
-                style={{ backgroundColor: bg }}
-                className="center-text f20 p20 bold">
-                {props[2]}
-            </div>
-            <div
-                style={{ backgroundColor: bg }}
-                className="center-text f20 p20 bold">
-                {props[3]}
-            </div>
-        </div>
-    )
-}
-
-
-const AssetPropertyReward = ({ props = [], bg }) => {
-    return (
-        <div style={{ display: "grid", gridTemplateColumns: "0.8fr repeat(3,1fr)", columnGap: 5, marginBottom: 5 }}>
-            <div
-                style={{ backgroundColor: bg }}
-                className="center-text f20 p20 bold">
-                Rewards & Benefit
-            </div>
-            <div
-                style={{ backgroundColor: bg }}
-                className="flex align-center justify-center">
-                <span
-                    className="block"
-                    style={{ width: 20, height: 20, border: "2px solid #707070", borderRadius: 100 }}>
-
-                </span>
-            </div>
-            <div
-                style={{ backgroundColor: bg }}
-                className="center-text f20 p20 bold">
-                <FaCheckCircle
-                    style={{ color: "#8BBD43" }} />
-            </div>
-            <div
-                style={{ backgroundColor: bg }}
-                className="center-text f20 p20 bold">
-                <FaCheckCircle
-                    style={{ color: "#8BBD43" }} />
-            </div>
-        </div>
-    )
-}
-
-
-const AssetPropertyLife = ({ props = [], bg }) => {
-    return (
-        <div style={{ display: "grid", gridTemplateColumns: "0.8fr repeat(3,1fr)", columnGap: 5, marginBottom: 5 }}>
-            <div
-                style={{ backgroundColor: bg }}
-                className="center-text f20 p20 bold">
-                Life Account
-            </div>
-            <div
-                style={{ backgroundColor: bg }}
-                className="flex align-center justify-center">
-                <span
-                    className="block"
-                    style={{ width: 20, height: 20, border: "2px solid #707070", borderRadius: 100 }}>
-                </span>
-            </div>
-            <div
-                style={{ backgroundColor: bg }}
-                className="center-text f20 p20 bold">
-                <FaCheckCircle
-                    style={{ color: "#8BBD43" }} />
-                <h4 className="f20">
-                    1% EARNINGS MONTHLY
-                </h4>
-                <p className="f16">(Withdraw at end of 6 months)</p>
-            </div>
-            <div
-                style={{ backgroundColor: bg }}
-                className="center-text f20 p20 bold">
-
-                <FaCheckCircle
-                    style={{ color: "#8BBD43" }} />
-                <h4 className="f20">
-                    1.25% EARNINGS MONTHLY
-                </h4>
-                <p className="f16">(Withdraw at end of 12 months)</p>
-            </div>
-        </div>
-    )
-}
-
-
-const AssetPropertyGoalWallet = ({ props = [], bg }) => {
-    return (
-        <div style={{ display: "grid", gridTemplateColumns: "0.8fr repeat(3,1fr)", columnGap: 5, marginBottom: 5 }}>
-            <div
-                style={{ backgroundColor: bg }}
-                className="center-text f20 p20 bold">
-                Goal Wallet
-            </div>
-            <div
-                style={{ backgroundColor: bg }}
-                className="flex align-center justify-center">
-                <span
-                    className="block"
-                    style={{ width: 20, height: 20, border: "2px solid #707070", borderRadius: 100 }}>
-                </span>
-            </div>
-
-            <div
-                style={{ backgroundColor: bg }}
-                className="center-text f20 p20 bold">
-
-                <FaCheckCircle
-                    style={{ color: "#8BBD43" }} />
-                <h4 className="f20">
-                    2% EARNINGS MONTHLY
-                </h4>
-                <p className="f16">(Accessed after 6 months)</p>
-            </div>
-            <div
-                style={{ backgroundColor: bg }}
-                className="center-text f20 p20 bold">
-
-                <FaCheckCircle
-                    style={{ color: "#8BBD43" }} />
-                <h4 className="f20">
-                    2% EARNINGS MONTHLY
-                </h4>
-                <p className="f16">(Withdraw at end of 12 months)</p>
-            </div>
-        </div>
-    )
-}

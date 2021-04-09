@@ -19,9 +19,11 @@ const SignUp = ({ history }) => {
             const response = await axios.post(`${baseURL}/auth/register`, credientials)
             const data = response.data
             log(data)
+            router.push("/rewards")
         } catch (error) {
             log(error.response.data.error)
             setregError(error.response.data.error)
+            window.scrollTo(0, 0)
         }
 
     }

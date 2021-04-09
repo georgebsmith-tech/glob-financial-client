@@ -1,5 +1,5 @@
 import Head from 'next/head'
-import styles from '../styles/Home.module.css'
+import styles from '../styles/FundAccount.module.css'
 import links from '../configs/links'
 import Link from 'next/link'
 import { useRouter } from 'next/router'
@@ -51,6 +51,9 @@ const CardDetails = () => {
         <>
 
             <form action="">
+                <h2 className="tb f24 center-text mt10 ">
+                    CREDIT CARD
+            </h2>
                 <div className="f16 mb20 mt30">
                     <label
                         className="t-grey block mb10"
@@ -83,7 +86,7 @@ const CardDetails = () => {
                             border: "1px solid rgba(250,250,250,1)"
                         }}
                         placeholder="Ex. John Doe "
-                        type="number" />
+                        type="text" />
                 </div>
                 <div className="grid grid2 gap20">
                     <div className="f16 mb20">
@@ -122,7 +125,7 @@ const CardDetails = () => {
                     </div>
                 </div>
                 <div className="center-text mt10 ">
-                    <Link href="/fund-account?kind=payment-options">
+                    <Link href="/dashboard">
                         <a className="tw br5 bg-brand-orange bd-o fw block f14"
                             style={{ padding: "11px" }}>
                             PROCEED
@@ -157,10 +160,11 @@ const CardOptions = () => {
                 {
                     options.map(option => <li >
                         <Link href={"/fund-account?kind=card-options&option=" + option.option}>
-                            <div className="f16 tw mb20"
-                                style={{ backgroundColor: "#8BBD43", padding: "13px 10px 13px 30px" }}>
+                            <a
+                                className={"f16 block mb20 tb " + styles.acctOptionHover}
+                                style={{ padding: "13px 10px 13px 30px" }}>
                                 {option.name}
-                            </div>
+                            </a>
                         </Link>
 
                     </li>)

@@ -183,37 +183,64 @@ const GlobCredit = () => {
 }
 
 const Cards = () => {
+
     return (
         <ul className="mt50"
             style={{ margin: 30 }}>
-            <Card />
-            <Card />
+            <CashCard />
+            <CardCrypto />
         </ul>
     )
 }
 
-const Card = () => {
+
+const CashCard = () => {
     return (
         <li
         >
             <Link href="/choose-asset?kind=cash">
 
-                <div className="center-text bw"
+                <div className="center-text bw pointer"
                     style={{ boxShadow: "2px 6px 30px 3px rgba(0, 0, 0, 0.1)", padding: "50px 20px 30px 20px", marginBottom: 60, height: 200 }}>
                     <h2 className="tb bold mb20 f24">
-                        Card
+                        Cash
                 </h2>
                     <p className="f14">
-                        <div className="mb20">
+                        <div className="mb10">
                             Earns 7.5% Prime Account
             </div>
-                        <div>
+                        <div className="mb10">
 
                             9% Propel Account
             </div>
-                        <div>
+                        <div className="mb10">
                             10% Prosper Account.
               </div>
+
+                    </p>
+                </div>
+            </Link>
+        </li>
+    )
+}
+const CardCrypto = () => {
+    return (
+        <li
+        >
+            <Link href="/choose-asset?kind=crypto">
+
+                <div className="center-text bw pointer"
+                    style={{ boxShadow: "2px 6px 30px 3px rgba(0, 0, 0, 0.1)", padding: "50px 20px 30px 20px", marginBottom: 60, height: 200 }}>
+                    <h2 className="tb bold mb20 f24">
+                        Crytocurency
+                </h2>
+                    <p className="f14">
+                        <div className="mb20">
+                            Earns 5% monthly on Bitcoin
+                            .
+
+            </div>
+
 
                     </p>
                 </div>
