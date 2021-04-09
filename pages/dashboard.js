@@ -2,32 +2,38 @@ import Head from 'next/head'
 import styles from '../styles/Home.module.css'
 import links from '../configs/links'
 import Link from 'next/link'
+import { useState } from 'react'
 import { useRouter } from 'next/router'
+import axios from 'axios'
+import baseURL from '../configs/baseURL'
+const log = console.log
+export async function getServerSideProps() {
+    // Fetch data from external API
+    const res = await axios(`${baseURL}/users/606f77e36fa3e8342cf65c3e`)
+    const user = res.data
 
-export default function SignIn() {
+    // Pass data to the page via props
+    return { props: { user } }
+}
+
+export default function Dashboard({ user }) {
+    const [userData, setUserData] = useState(user)
     return (
         <div
             className="" style={{ width: "100vw" }}>
             <h1 className="bold f20 tb v-shadow p10 mt20">
                 Dashboard
             </h1>
-            <UserProfile />
+            <UserProfile user={userData} />
             <AccountValue />
 
             <ReferAFriend />
-
-
-
-
         </div>
-
-
-
     )
 }
 
 
-const UserProfile = () => {
+const UserProfile = ({ user }) => {
     return (
         <div className="center-text flex align-center flex-cols  v-shadow p40 mt20">
             <div className="mb20" style={{ width: 70 }}>
@@ -37,8 +43,8 @@ const UserProfile = () => {
             </div>
 
             <h3 className="tb f23">
-                Godswill Augustine
-                </h3>
+                {user.fullName}
+            </h3>
             <div className="f16">
                 Member ID: <span className="bold tb">635343***</span>
             </div>
