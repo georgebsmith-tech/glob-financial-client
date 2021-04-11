@@ -21,7 +21,7 @@ const SignUp = ({ history }) => {
             const data = response.data
             log(data)
             cookie.set("id", data._id, { expires: 24 })
-            router.push("/rewards")
+            router.push("/reward")
         } catch (error) {
             log(error.response.data.error)
             setregError(error.response.data.error)

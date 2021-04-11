@@ -1,6 +1,7 @@
-import React from 'react'
+import React, { useState } from 'react'
 import Link from 'next/link'
 import { useMediaQuery } from 'react-responsive';
+import styles from '../../styles/GuestHeader.module.css'
 
 const GuestHeader = ({ children }) => {
     const isPortrait = useMediaQuery({ query: '(orientation: portrait)' })
@@ -9,37 +10,94 @@ const GuestHeader = ({ children }) => {
         query: '(max-device-width: 1224px)'
     })
 
+    const [toggleIsOpen, setToggleIsOpen] = useState(false)
+
+    const handleToggle = () => {
+        setToggleIsOpen(!toggleIsOpen)
+    }
+
+    const pages = [
+        {
+            name: "Home",
+            url: "/"
+        },
+        {
+            name: "Community",
+            url: "/community"
+        },
+        {
+            name: "Product",
+            url: "/product"
+        },
+        {
+            name: "Reward",
+            url: "/reward"
+        },
+        {
+            name: "Our Story",
+            url: "our-story"
+        }
+        ,
+        {
+            name: "Login",
+            url: "/sign-in"
+        }
+    ]
+
     if (isTabletOrMobile) {
         return (
             <div className="pt25">
 
                 <nav className="bw">
-                    <Link href="/">
 
 
-                        <a className="flex align-center space-between p15 ">
 
-                            <h2>
-                                <span className="bold f16 fw">GLOB</span><span className="f16 fo">
-                                    FINANCIAL
+                    <div className="flex align-center space-between p15 ">
+
+                        <h2>
+                            <span className="bold f16 fw">GLOB</span><span className="f16 fo">
+                                FINANCIAL
                 </span>
-                            </h2>
-                            <div>
-                                <Link href="/sign-up">
-                                    <a
-                                        style={{
-                                            padding: "16px 46px",
-                                            boxShadow: "0px 4px 31px rgba(0, 0, 0, 0.15)"
-                                        }}
-                                        className="f16 tw bg-brand-orange ">
-                                        Register
+                        </h2>
+                        <div>
+                            <Link href="/sign-up">
+                                <a
+                                    style={{
+                                        padding: "16px 46px",
+                                        boxShadow: "0px 4px 31px rgba(0, 0, 0, 0.15)"
+                                    }}
+                                    className="f16 tw bg-brand-orange ">
+                                    Register
                             </a>
-                                </Link>
-                            </div>
-                        </a>
-                    </Link>
-                </nav>
+                            </Link>
+                        </div>
 
+                        <div
+                            onClick={handleToggle}
+                        >
+                            <img src="./images/toggle-nav.svg" alt="" />
+                        </div>
+                    </div>
+
+
+                </nav>
+                {
+                    toggleIsOpen && <ul className="ct mt50" style={{ borderBottom: "1px solid #f4f4f4" }}>
+                        {
+                            pages.map((page, idx) => <li
+                                key={idx} className="mb30 mt30">
+                                <Link href={page.url}>
+                                    <a
+                                        onClick={() => setToggleIsOpen(false)}
+                                        className="f30 tb normal">
+                                        {page.name}
+                                    </a>
+                                </Link>
+                            </li>)
+                        }
+
+                    </ul>
+                }
 
             </div>
 
