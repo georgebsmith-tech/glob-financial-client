@@ -6,11 +6,16 @@ import { useState } from 'react'
 import { useRouter } from 'next/router'
 import axios from 'axios'
 import baseURL from '../configs/baseURL'
+
+import Modal from '@material-ui/core/Modal';
 const log = console.log
-export async function getServerSideProps() {
+// const userID = localStorage.getItem("id")
+export async function getServerSideProps({ req }) {
     // Fetch data from external API
-    const res = await axios(`${baseURL}/users/606f77e36fa3e8342cf65c3e`)
+
+    const res = await axios(`${baseURL}/users/${req.cookies.id}`)
     const user = res.data
+    // log(user)
 
     // Pass data to the page via props
     return { props: { user } }
@@ -25,8 +30,7 @@ export default function Dashboard({ user }) {
                 Dashboard
             </h1>
             <UserProfile user={userData} />
-            <AccountValue />
-
+            <AccountValue user={userData} />
             <ReferAFriend />
         </div>
     )
@@ -46,13 +50,15 @@ const UserProfile = ({ user }) => {
                 {user.fullName}
             </h3>
             <div className="f16">
-                Member ID: <span className="bold tb">635343***</span>
+                Member ID: <span className="bold tb">{user._id.substr(0, 6)}***</span>
             </div>
         </div>
     )
 }
 
+
 const ReferAFriend = () => {
+    const [showReferalOptions, setshowReferalOptions] = useState("")
     return (
         <div className="p10 tw v-shadow mt20" style={{ paddingTop: 30, paddingBottom: 50 }}>
             <h2 className="f16 bolder tb mb30">
@@ -62,7 +68,9 @@ const ReferAFriend = () => {
                 Invite your friends to Sign up to Glob and earn a reward.
         </p>
             <div className="center-text">
-                <button className="tw br10 bg-brand-orange f16 p15 bd-brand-orange bold" style={{ width: "80%" }}>
+                <button
+                    onClick={() => setshowReferalOptions(true)}
+                    className="tw br10 bg-brand-orange f16 p15 bd-brand-orange bold" style={{ width: "80%" }}>
                     Refer A friend
             </button>
             </div>
@@ -71,30 +79,54 @@ const ReferAFriend = () => {
     )
 }
 
-const AccountValue = () => {
+const AccountValue = ({ user }) => {
+    const accounts = [
+        {
+            name: "Life Account",
+            value: user.wallet.lifeAccount
+        },
+        {
+            name: "Goal Account",
+            value: user.wallet.goalAccount
+        },
+        {
+            name: "ROI",
+            value: user.wallet.ROI
+        }
+    ]
     return (
-        <div className="bw mt20 p10" style={{ paddingTop: 20 }}>
-            <div className="center-text mb30">
-                <h2 className="f14">
+        <div
+            className="bw mt20 p10"
+            style={{ paddingTop: 20 }}>
+            <div
+                className="center-text mb30">
+                <h2
+                    className="f14">
                     Account Value
             </h2>
-                <div className="f30 bold tb mt10">
-                    $1,234.98
-            </div>
+                <div
+                    className="f30 bold tb mt10">
+                    ${user.wallet.lifeAccount + user.wallet.goalAccount + user.wallet.referralAccount}
+                </div>
             </div>
             {
-                [2, 4].map(() => <li >
-                    <Link href={links.withdrawal}>
-                        <a className="v-shadow mb20 flex align-center space-between p20" style={{ paddingBottom: 40 }}>
+                accounts.map((account) => <li >
+                    <Link
+                        href={links.withdrawal}>
+                        <a
+                            className="v-shadow mb20 flex align-center space-between p20"
+                            style={{ paddingBottom: 40 }}>
 
 
                             <div>
-                                <h3 className="f14 mb20">
-                                    Life Account
-                </h3>
-                                <div className="f18 bolder">
-                                    14,000
-                        </div>
+                                <h3
+                                    className="f14 mb20">
+                                    {account.name}
+                                </h3>
+                                <div
+                                    className="f18 bolder">
+                                    {account.value}
+                                </div>
 
                             </div>
                             <div>
@@ -108,7 +140,6 @@ const AccountValue = () => {
 
                 </li>)
             }
-
 
 
         </div>

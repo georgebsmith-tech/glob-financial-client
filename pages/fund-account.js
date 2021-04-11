@@ -3,6 +3,10 @@ import styles from '../styles/FundAccount.module.css'
 import links from '../configs/links'
 import Link from 'next/link'
 import { useRouter } from 'next/router'
+import { useState } from 'react'
+import cookie from 'js-cookie'
+import sendRequest from '../utils/server-com/sendRequest'
+const log = console.log
 
 const FundAccount = () => {
     const router = useRouter()
@@ -47,6 +51,34 @@ const FundAccount = () => {
 
 
 const CardDetails = () => {
+    const router = useRouter()
+    const [paymentDetails, setPaymentDetails] = useState(
+        {
+            cardNumber: "",
+            nameOnCard: "",
+            expiryDate: "",
+            cvv: "",
+            asset: "cash",
+            accType: "propel",
+            capital: "",
+            userID: cookie.get("id")
+        }
+    )
+    const makeInvestment = async (data) => {
+        const body = data
+        try {
+            const data = await sendRequest(body, "post", "investments")
+            router.push("/dashboard")
+        } catch (err) {
+            console.log(err)
+        }
+    }
+    const handleSubmit = (e) => {
+        e.preventDefault();
+        log(paymentDetails)
+        makeInvestment(paymentDetails)
+    }
+    // console.log(paymentDetails)
     return (
         <>
 
@@ -61,7 +93,8 @@ const CardDetails = () => {
                         CARD NUMBER
                     </label>
                     <input
-
+                        value={paymentDetails.cardNumber}
+                        onChange={(e) => setPaymentDetails({ ...paymentDetails, cardNumber: e.target.value })}
                         className="fw br5 f16 t-grey3"
                         style={{
                             padding: "17px 15px",
@@ -78,7 +111,8 @@ const CardDetails = () => {
                         NAME ON CARD
                     </label>
                     <input
-
+                        value={paymentDetails.nameOnCard}
+                        onChange={(e) => setPaymentDetails({ ...paymentDetails, nameOnCard: e.target.value })}
                         className="fw br5 f16 t-grey3"
                         style={{
                             padding: "17px 15px",
@@ -96,7 +130,8 @@ const CardDetails = () => {
                             EXPIRY DATE
                     </label>
                         <input
-
+                            value={paymentDetails.expiryDate}
+                            onChange={(e) => setPaymentDetails({ ...paymentDetails, expiryDate: e.target.value })}
                             className="fw br5 f16 t-grey3"
                             style={{
                                 padding: "17px 15px",
@@ -113,7 +148,8 @@ const CardDetails = () => {
                             CVV
                     </label>
                         <input
-
+                            value={paymentDetails.cvv}
+                            onChange={(e) => setPaymentDetails({ ...paymentDetails, cvv: e.target.value })}
                             className="fw br5 f16 t-grey3"
                             style={{
                                 padding: "17px 15px",
@@ -124,13 +160,34 @@ const CardDetails = () => {
                             type="number" />
                     </div>
                 </div>
+                <div className="f16 mb20">
+                    <label
+                        className="t-grey block mb10"
+                        htmlFor="amount">
+                        INVESTMENT AMOUNT
+                    </label>
+                    <input
+                        value={paymentDetails.capital}
+                        onChange={(e) => setPaymentDetails({ ...paymentDetails, capital: e.target.value })}
+                        id="amount"
+                        className="fw br5 f16 t-grey3"
+                        style={{
+                            padding: "17px 15px",
+                            backgroundColor: "rgba(250,250,250,1)",
+                            border: "1px solid rgba(250,250,250,1)"
+                        }}
+                        placeholder="Ex. 10000 "
+                        type="number" />
+                </div>
                 <div className="center-text mt10 ">
-                    <Link href="/dashboard">
-                        <a className="tw br5 bg-brand-orange bd-o fw block f14"
-                            style={{ padding: "11px" }}>
-                            PROCEED
-                        </a>
-                    </Link>
+
+                    <button
+                        onClick={handleSubmit}
+                        className="tw br5 bg-brand-orange bd-o fw f14"
+                        style={{ padding: "11px" }}>
+                        PROCEED
+                        </button>
+
                 </div>
 
 
@@ -156,13 +213,16 @@ const CardOptions = () => {
     ]
     return (
         <>
+            <h2 className="center-text mt10 f20">
+                Payment Options
+        </h2>
             <ul className="mt30">
                 {
                     options.map(option => <li >
                         <Link href={"/fund-account?kind=card-options&option=" + option.option}>
                             <a
                                 className={"f16 block mb20 tb " + styles.acctOptionHover}
-                                style={{ padding: "13px 10px 13px 30px" }}>
+                                style={{ padding: "13px 10px 13px 30px", borderBottom: "1px solid #000" }}>
                                 {option.name}
                             </a>
                         </Link>

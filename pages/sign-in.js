@@ -7,6 +7,7 @@ import { useState } from 'react'
 import baseURL from '../configs/baseURL'
 const log = console.log
 import axios from 'axios'
+import cookie from 'js-cookie'
 
 
 const SignIn = ({ history }) => {
@@ -20,6 +21,8 @@ const SignIn = ({ history }) => {
             const response = await axios.post(`${baseURL}/auth/login`, credientials)
             const data = response.data
             log(data)
+            router.push("/dashboard")
+            cookie.set("id", data.userId, { expires: 1 / 24 })
         } catch (error) {
             log(error.response.data.error)
             setLoginError(error.response.data.error)
@@ -114,7 +117,7 @@ const SignIn = ({ history }) => {
                     <div className="center-text mt30 ">
                         <button
                             onClick={handleLogin}
-                            className="tw br8 bg-brand-orange bd-o fw"
+                            className="tw br8 bg-brand-orange bd-o fw pointer"
                             style={{ padding: "11px 111px" }}>
                             Login
                         </button>

@@ -4,10 +4,25 @@ import styles from '../styles/Home.module.css'
 import links from '../configs/links'
 import Link from 'next/link'
 import { useRouter } from 'next/router'
-
+import sendRequest from '../utils/server-com/sendRequest'
+import cookie from 'js-cookie'
+const log = console.log
 import { FaSmileO } from 'react-icons/fa'
+import { getDate } from "../utils/dateAndTime/getDate"
 
-export default function SignIn() {
+
+export async function getServerSideProps({ req }) {
+    const data = await sendRequest("", "get", `investments/${req.cookies.id}?asset=cash`)
+    console.log(data)
+    return {
+        props: {
+            investments: data
+        }
+    }
+}
+
+export default function Investmnet({ investments }) {
+
     return (
         <div
             className="" style={{ width: "100vw", backgroundColor: "rgba(0, 0, 0, 0.16)" }}>
@@ -33,46 +48,61 @@ export default function SignIn() {
 
                     </select>
                 </div>
-                <div className="p10 bw mb5">
-                    <ul className="grid grid7 cg10">
-                        <li className="f10 bold tb">Date</li>
-                        <li className="f10 bold tb">Acc  </li>
-                        <li className="f10 bold tb"> Capital</li>
-                        <li className="f10 bold tb nb">Accum. ROI</li>
-                        <li className="f10 bold tb nb">Life Acc. </li>
-                        <li className="f10 bold tb nb">Goal Wallet</li>
-                        <li></li>
-                    </ul>
+                {
+                    investments.length === 0 ?
+                        <div className="bw p20 ct f18 grey3">You have no active Investment.
+                            <div className="p20">
+                                <button className="bbo tw bd-o p10 br5 f14">
+                                    Make An Investment
+                                </button>
+                            </div></div> :
+                        <>
+                            <div className="p10 bw mb5">
+                                <ul className="grid grid7 cg10">
+                                    <li className="f10 bold tb">Date</li>
+                                    <li className="f10 bold tb">Acc  </li>
+                                    <li className="f10 bold tb"> Capital</li>
+                                    <li className="f10 bold tb nb">Accum. ROI</li>
+                                    <li className="f10 bold tb nb">Life Acc. </li>
+                                    <li className="f10 bold tb nb">Goal Wallet</li>
+                                    <li></li>
+                                </ul>
 
 
-                </div>
-                <ul>
-                    {
-                        [2, 4, 1, 2, 3, 4, 5, 2, 3, 4].map(() => <li>
-                            <ul className="grid grid7 cg10 p10 bw mb2 align-center">
-                                <li className="f10 nb"><div>
-                                    24 Apr.
-                        </div>
-                                    <div>
-                                        2020
-                        </div></li>
-                                <li className="f10">prosper  </li>
-                                <li className="f10 nb"> 2000 USD</li>
-                                <li className="f10">100 USD</li>
-                                <li className="f10">300 USD </li>
-                                <li className="f10">100 USD</li>
-                                <li>
-                                    <Link href={links.withdrawalDetails || ""}>
-                                        <a className="f10 text-brand-orange bold">
-                                            withdraw
+                            </div>
+                            <ul>
+                                {
+
+                                    investments.map((investment) => {
+                                        const date = getDate(investment.createdAt).split(" ")
+                                        return <li>
+                                            <ul className="grid grid7 cg10 p10 bw mb2 align-center">
+                                                <li className="f10 nb"><div>
+                                                    {`${date[0]} ${date[1]}`}
+                                                </div>
+                                                    <div>
+                                                        {`${date[2]}`}
+                                                    </div></li>
+                                                <li className="f10">{investment.accType}  </li>
+                                                <li className="f10 nb"> {investment.capital} USD</li>
+                                                <li className="f10">{investment.ROI} USD</li>
+                                                <li className="f10">{investment.lifeAccount} USD </li>
+                                                <li className="f10">{investment.goalAccount} USD</li>
+                                                <li>
+                                                    <Link href={links.withdrawalDetails || ""}>
+                                                        <a className="f10 text-brand-orange bold">
+                                                            withdraw
                                 </a>
-                                    </Link>
-                                </li>
-                            </ul>
+                                                    </Link>
+                                                </li>
+                                            </ul>
 
-                        </li>)
-                    }
-                </ul>
+                                        </li>
+                                    })
+                                }
+                            </ul>
+                        </>
+                }
 
 
 

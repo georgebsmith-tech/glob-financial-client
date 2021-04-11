@@ -7,6 +7,7 @@ import { useState } from 'react'
 import baseURL from '../configs/baseURL'
 const log = console.log
 import axios from 'axios'
+import cookie from 'js-cookie'
 
 const SignUp = ({ history }) => {
     const router = useRouter()
@@ -19,6 +20,7 @@ const SignUp = ({ history }) => {
             const response = await axios.post(`${baseURL}/auth/register`, credientials)
             const data = response.data
             log(data)
+            cookie.set("id", data._id, { expires: 24 })
             router.push("/rewards")
         } catch (error) {
             log(error.response.data.error)
