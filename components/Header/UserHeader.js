@@ -55,7 +55,7 @@ export default function UserHeder() {
             <div
                 onClick={() => setNavIsOpen(false)}
                 style={{
-                    position: "fixed", top: 0, right: 0, height: "100vh", overflowY: "auto",
+                    position: "fixed", top: 0, right: 0, height: "100vh", overflowY: "auto", zIndex: 10,
                     width: "100vw",
                     backgroundColor: "rgba(139, 189, 67, 0.8)"
                 }}
