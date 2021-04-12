@@ -51,13 +51,13 @@ const Assets = () => {
             backgroundColor: "rgba(166, 241, 255, 1)",
             midColor: "rgba(0, 215, 255, 1)"
         },
-        {
-            type: "stock",
-            unit: "USD",
-            value: "1,2334.23",
-            backgroundColor: "rgba(252, 191, 210, 1)",
-            midColor: "rgba(245, 72, 127, 1)"
-        }
+        // {
+        //     type: "stock",
+        //     unit: "USD",
+        //     value: "1,2334.23",
+        //     backgroundColor: "rgba(252, 191, 210, 1)",
+        //     midColor: "rgba(245, 72, 127, 1)"
+        // }
     ]
     return (
         <div className="v-shadow mt20 container">
@@ -246,7 +246,7 @@ const TransactionHistory = () => {
             </h2>
             <ul className="flex" style={{ borderBottom: "1px solid rgba(112, 112, 112, 1)" }}>
                 {
-                    ["cash", "crypto", "stock"].map(type => <li
+                    ["cash", "crypto"].map(type => <li
                         className={"f14 p10 pointer " + (transHistoryActive === type && "bolder")}
                         data-type={type}
                         onClick={function (e) { setTransHistoryActive(e.target.dataset.type) }}
