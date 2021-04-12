@@ -21,7 +21,7 @@ export async function getServerSideProps({ req }) {
     }
 }
 
-export default function Investmnet({ investments }) {
+function Investmnet({ investments }) {
 
     return (
         <div
@@ -119,3 +119,7 @@ export default function Investmnet({ investments }) {
     )
 }
 
+
+
+Investmnet.layout = "user"
+export default Investmnet;

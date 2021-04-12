@@ -7,7 +7,7 @@ import { useRouter } from 'next/router'
 
 import { FaCashRegister, FaGift, FaHeadphones, FaMoneyBill, FaSmileO } from 'react-icons/fa'
 
-export default function SignIn() {
+export default function Bonus() {
 
     let content;
 
@@ -87,6 +87,8 @@ const OngoingContest = () => {
         </div>
     )
 }
+
+Bonus.layout = "user"
 
 const ContestRewards = () => {
     return (

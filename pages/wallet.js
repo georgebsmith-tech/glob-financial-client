@@ -8,7 +8,7 @@ import { useRouter } from 'next/router'
 import { FaCashRegister, FaGift, FaHeadphones, FaMoneyBill, FaSmileO } from 'react-icons/fa'
 import Withdraw from '../components/Withdraw/Withdraw'
 
-export default function SignIn() {
+export default function Wallet() {
     const router = useRouter()
 
     let content;
@@ -51,6 +51,8 @@ export default function SignIn() {
 
     )
 }
+
+Wallet.layout = "user"
 
 const Cash = () => {
     return (

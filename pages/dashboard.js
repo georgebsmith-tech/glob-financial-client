@@ -21,7 +21,7 @@ export async function getServerSideProps({ req }) {
     return { props: { user } }
 }
 
-export default function Dashboard({ user }) {
+function Dashboard({ user = { _id: "23122", wallet: {} } }) {
     const [userData, setUserData] = useState(user)
     return (
         <div
@@ -35,6 +35,9 @@ export default function Dashboard({ user }) {
         </div>
     )
 }
+
+Dashboard.layout = "user"
+export default Dashboard;
 
 
 const UserProfile = ({ user }) => {

@@ -7,7 +7,7 @@ import { useRouter } from 'next/router'
 
 import { FaSmileO } from 'react-icons/fa'
 
-export default function SignIn() {
+export default function Withdraw() {
     return (
         <div
             className="" style={{ width: "100vw" }}>
@@ -32,6 +32,8 @@ export default function SignIn() {
     )
 }
 
+
+Withdraw.layout = "user"
 
 const Assets = () => {
     const assets = [
