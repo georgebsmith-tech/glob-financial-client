@@ -110,7 +110,9 @@ cursor:pointer;
 .hide{
   display: none;
 }
-
+.absolute{
+  position: absolute;
+}
 
 .mr30{
   margin-right:30px;

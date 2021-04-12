@@ -103,10 +103,21 @@ export default function Home() {
 
       <OpenAcctLink />
 
-      <div className="mt20">
+      <div className="mt20 relative flex justify-center">
         <img
+          className="absolute"
+          style={{ width: "57%", top: 30 }}
+          src="./images/layer1.svg"
+          alt="" />
+        <img
+          className="relative"
           style={{ width: "100%" }}
-          src="./images/home-banner.png"
+          src="./images/layer2.svg"
+          alt="" />
+        <img
+          className="absolute"
+          style={{ width: "50%", bottom: 0 }}
+          src="./images/layer3.svg"
           alt="" />
       </div>
 
